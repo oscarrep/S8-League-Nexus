@@ -1,0 +1,32 @@
+.lec {
+    width: 50px;
+    height: 40px;
+    background-image: url('/assets/lec-logo-w.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.lec:hover {
+    background-image: url('/assets/lec-logo.png');
+    cursor: pointer;
+}
+.riot {
+    width: 100px;
+    height: 50px;
+    background-image: url('/assets/riot-logo-w.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.riot:hover {
+    background-image: url('/assets/riot-logo.png');
+    cursor: pointer;
+}
+
+a{
+    color: white;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
