@@ -2,14 +2,14 @@
     <div class="row">
         <div class="bg-dark d-flex">
             <div class="navbar">
-                <div class="ms-2 my-3 riot"></div>
-                <div class="ms-5 lec"></div>
-                <a class="mx-5" href="/home">HOME</a>
-                <a class="mx-5" href="/map">MAP</a>
-                <a class="mx-5" href="/calendar">CALENDAR</a>
-                <a class="mx-5" href="/graphs">GRAPHS</a>
+                <div routerLink="/home" class="ms-3 my-3 riot"></div>
+                <div routerLink="/home" class="ms-5 lec"></div>
+                <a class="mx-5" routerLink="/home">HOME</a>
+                <a class="mx-5" routerLink="/map">MAP</a>
+                <a class="mx-5" routerLink="/calendar">CALENDAR</a>
+                <a class="mx-5" routerLink="/graphs">GRAPHS</a>
             </div>
         </div>
-
     </div>
 </header>
+<router-outlet></router-outlet>
