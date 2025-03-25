@@ -4,7 +4,7 @@ export interface Player {
     position: string,
     age: string,
     country: string,
-    city: string,
+    city?: string,
     lat?: string,
     long?: string,
     team: string,
