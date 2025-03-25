@@ -22,16 +22,22 @@ export class AddEditComponent {
       team: ['', Validators.required],
       position: ['', Validators.required],
       age: ['', Validators.required],
-      nationality: ['', Validators.required],
+      country: ['', Validators.required],
       city: ['', Validators.required],
     })
   }
 
 
   addPlayer() {
-    /* const player: Player = {
-
-    } */
+    const player: Player = {
+      username: this.playersForm.value.username,
+      name: this.playersForm.value.name,
+      team: this.playersForm.value.team,
+      position: this.playersForm.value.position,
+      age: this.playersForm.value.age,
+      country: this.playersForm.value.country,
+      city: this.playersForm.value.city,
+    }
   }
 
 }
