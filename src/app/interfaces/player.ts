@@ -5,8 +5,8 @@ export interface Player {
     age: string,
     country: string,
     city?: string,
-    lat?: string,
-    long?: string,
+    lat?: number,
+    long?: number,
     team: string,
     img?: string,
     id?: number
