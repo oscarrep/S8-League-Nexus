@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { Player } from '../../interfaces/player';
 import { Router, RouterModule } from '@angular/router';
+import { PlayerService } from '../../services/player.service';
 
 @Component({
   selector: 'app-player-list',
@@ -8,7 +9,12 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './player-list.component.html',
   styleUrl: './player-list.component.scss'
 })
-export class PlayerListComponent {
+export class PlayerListComponent implements OnInit {
+
+  private _playerService = inject(PlayerService);
+
+
+  
   playerList: Player[] = [
     {
       username: 'Myrwn',
@@ -30,6 +36,15 @@ export class PlayerListComponent {
       team: 'Team Heretics',
       id: 2
     },
-
   ];
+
+  ngOnInit(): void {
+   this.getPlayerList();
+  }
+
+  getPlayerList() {
+    this._playerService.getPlayerList().subscribe(data => {
+      console.log(data);
+    })
+  }
 }
