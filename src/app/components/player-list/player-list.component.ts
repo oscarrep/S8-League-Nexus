@@ -3,6 +3,7 @@ import { Player } from '../../interfaces/player';
 import { Router, RouterModule } from '@angular/router';
 import { PlayerService } from '../../services/player.service';
 import { LoadingComponent } from "../../shared/loading/loading.component";
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-player-list',
@@ -16,6 +17,8 @@ export class PlayerListComponent implements OnInit {
   loading: boolean = false;
   playerList: Player[] = [];
 
+  constructor(private toastr: ToastrService) { }
+
   ngOnInit(): void {
     this.getPlayerList();
   }
@@ -28,11 +31,12 @@ export class PlayerListComponent implements OnInit {
       this.loading = false;
     })
   }
-  
+
   deletePlayer(id: number) {
     this.loading = true;
-    this._playerService.deletePlayer(id).subscribe(data => {
+    this._playerService.deletePlayer(id).subscribe((data)=> {
       this.getPlayerList();
+      this.toastr.warning(`Deleted player with id ${id}`, 'List Update');
     });
   }
 }
