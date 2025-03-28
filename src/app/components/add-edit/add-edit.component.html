@@ -19,6 +19,10 @@
                     @if(playersForm.get('team')?.hasError('required') && playersForm.get('team')?.touched){
                     <div class="error-text">Team is required</div>
                     }
+                    <input formControlName="team_short" type="text" class="form-control mt-3" placeholder="Acronym">
+                    @if(playersForm.get('team_short')?.hasError('required') && playersForm.get('team_short')?.touched){
+                    <div class="error-text">Team is required</div>
+                    }
                     <select formControlName="position" class="form-select mt-3" id="pos-sel" placeholder="Position">
                         <option value="" selected disabled hidden>Position</option>
                         <option value="1">Top Lane</option>

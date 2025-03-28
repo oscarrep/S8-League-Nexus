@@ -6,8 +6,9 @@ export interface Player {
     country: string,
     city?: string,
     lat?: number,
-    long?: number,
+    lon?: number,
     team: string,
+    team_short: string,
     img?: string,
     id?: number
 }

@@ -12,12 +12,16 @@ export class PlayerService {
   private apiUrl: string;
   //private http = inject(HttpClient);
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
     this.appUrl = environment.endpoint;
     this.apiUrl = environment.apiPlayers;
   }
 
-  getPlayerList():Observable <Player[]>{
+  getPlayerList(): Observable<Player[]> {
     return this.http.get<Player[]>(`${this.appUrl}${this.apiUrl}`);
+  }
+
+  deletePlayer(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.appUrl}${this.apiUrl}${id}`)
   }
 }
