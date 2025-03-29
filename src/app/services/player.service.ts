@@ -28,4 +28,8 @@ export class PlayerService {
   savePlayer(player: Player): Observable<void> {
     return this.http.post<void>(`${this.appUrl}${this.apiUrl}`, player)
   }
+
+  getPlayer(id: number): Observable<Player> {
+    return this.http.get<Player>(`${this.appUrl}${this.apiUrl}${id}`)
+  }
 }
