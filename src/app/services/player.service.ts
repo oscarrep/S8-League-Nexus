@@ -24,4 +24,8 @@ export class PlayerService {
   deletePlayer(id: number): Observable<void> {
     return this.http.delete<void>(`${this.appUrl}${this.apiUrl}${id}`)
   }
+
+  savePlayer(player: Player): Observable<void> {
+    return this.http.post<void>(`${this.appUrl}${this.apiUrl}`, player)
+  }
 }

@@ -34,7 +34,7 @@ export class PlayerListComponent implements OnInit {
 
   deletePlayer(id: number) {
     this.loading = true;
-    this._playerService.deletePlayer(id).subscribe((data)=> {
+    this._playerService.deletePlayer(id).subscribe(()=> {
       this.getPlayerList();
       this.toastr.warning(`Deleted player with id ${id}`, 'List Update');
     });

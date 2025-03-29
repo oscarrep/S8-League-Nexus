@@ -4,6 +4,7 @@
     <h2 class="my-4 title">PLAYER LIST</h2>
 
     <button type="button" class="btn-primary btn right mb-2" routerLink="/add">Add Player</button>
+    @if(playerList.length>0){
     <table class="table table-hover">
         <thead>
             <tr class="table-dark">
@@ -40,5 +41,9 @@
             }
         </tbody>
     </table>
+    }
+    @else {
+        <h5>No player data</h5>
+    }
 </div>
 }

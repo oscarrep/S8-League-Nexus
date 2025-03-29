@@ -1,3 +1,5 @@
+@if(loading){<app-loading></app-loading>}
+@else if (!loading) {
 <div class="row center">
     <div class="col-4 center">
         <div class="card add-card text-white bg-dark mb-3">
@@ -6,10 +8,10 @@
             </div>
             <div class="card-body">
                 <form [formGroup]="playersForm" (ngSubmit)="addPlayer()">
-                        <input formControlName="username" type="text" class="form-control" placeholder="User name">
-                        @if(playersForm.get('username')?.hasError('required') && playersForm.get('username')?.touched){
-                        <div class="error-text">User name is required </div>
-                        }
+                    <input formControlName="username" type="text" class="form-control" placeholder="User name">
+                    @if(playersForm.get('username')?.hasError('required') && playersForm.get('username')?.touched){
+                    <div class="error-text">User name is required </div>
+                    }
 
                     <input formControlName="name" type="text" class="form-control mt-3" placeholder="Player name">
                     @if(playersForm.get('name')?.hasError('required') && playersForm.get('name')?.touched){
@@ -25,11 +27,11 @@
                     }
                     <select formControlName="position" class="form-select mt-3" id="pos-sel" placeholder="Position">
                         <option value="" selected disabled hidden>Position</option>
-                        <option value="1">Top Lane</option>
-                        <option value="2">Jungle</option>
-                        <option value="3">Mid Lane</option>
-                        <option value="4">Bot Lane</option>
-                        <option value="5">Support</option>
+                        <option value="Top Lane">Top Lane</option>
+                        <option value="Jungle">Jungle</option>
+                        <option value="Mid Lane">Mid Lane</option>
+                        <option value="Bot Lane">Bot Lane</option>
+                        <option value="Support">Support</option>
                     </select>
                     @if(playersForm.get('position')?.hasError('required') && playersForm.get('position')?.touched){
                     <div class="error-text">Position is required</div>
@@ -38,8 +40,7 @@
                     @if(playersForm.get('age')?.hasError('required') && playersForm.get('age')?.touched){
                     <div class="error-text">Age is required</div>
                     }
-                    <input formControlName="country" type="text" class="form-control mt-3"
-                        placeholder="Nationality">
+                    <input formControlName="country" type="text" class="form-control mt-3" placeholder="Nationality">
                     @if(playersForm.get('nationality')?.hasError('required') &&
                     playersForm.get('nationality')?.touched){
                     <div class="error-text">Nationality is required</div>
@@ -57,3 +58,5 @@
             </div>
         </div>
     </div>
+</div>
+}
