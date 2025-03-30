@@ -1,9 +1,25 @@
-.add-card{
+.add-card {
     width: 25rem;
 }
 
-.center{
+.center {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.error-text {
+    background-color: #f14861;
+    color: white;
+    font-size: small;
+    border-radius: 5px;
+    padding: 13px 13px 5px;
+    margin-top: -10px;
+    position: relative;
+}
+
+.form-control,
+.form-select {
+    z-index: 1;
+    position: relative;
 }
