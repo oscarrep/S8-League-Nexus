@@ -25,7 +25,7 @@
                 <td>{{player.team_short}}, {{player.team}}</td>
                 <td>{{player.position}}</td>
                 <td>{{player.age}}</td>
-                @if(player.city)
+                @if(player.city && player.city != player.country)
                 {
                 <td>{{player.city}}, {{player.country}}</td>
                 }
