@@ -32,4 +32,8 @@ export class PlayerService {
   getPlayer(id: number): Observable<Player> {
     return this.http.get<Player>(`${this.appUrl}${this.apiUrl}${id}`)
   }
+
+  updatePlayer(id: number, player: Player): Observable<void> {
+    return this.http.put<void>(`${this.appUrl}${this.apiUrl}${id}`, player)
+  }
 }

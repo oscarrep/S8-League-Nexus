@@ -38,8 +38,10 @@ export class AddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.id != 0) this.addEdit = 'Edit';
-    this.getPlayer(this.id)
+    if (this.id != 0) {
+      this.addEdit = 'Edit';
+      this.getPlayer(this.id);
+    }
   }
 
 
@@ -56,12 +58,22 @@ export class AddEditComponent implements OnInit {
     }
 
     this.loading = true;
-    this._playerService.savePlayer(player).subscribe(() => {
-      console.log('added player');
-      this.loading = false;
-      this.toastr.success(`${player.name} registered to database`, 'Player Registered')
-      this.router.navigate(['/'])
-    })
+
+    if (this.id !== 0) {
+      player.id = this.id;
+      this._playerService.updatePlayer(this.id, player).subscribe(() => {
+        this.toastr.info(`Player ${player.name} updated`, 'Player Updated');
+        this.loading = false;
+        this.router.navigate(['/']);
+      })
+    }
+    else {
+      this._playerService.savePlayer(player).subscribe(() => {
+        this.toastr.success(`Player ${player.name} registered to database`, 'Player Registered');
+        this.loading = false;
+        this.router.navigate(['/']);
+      })
+    }
   }
 
   getPlayer(id: number) {
