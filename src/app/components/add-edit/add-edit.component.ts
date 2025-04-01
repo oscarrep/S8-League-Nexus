@@ -4,9 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Player } from '../../interfaces/player';
 import { PlayerService } from '../../services/player.service';
 import { LoadingComponent } from "../../shared/loading/loading.component";
-import { routes } from '../../app.routes';
-import { Toast, ToastrService } from 'ngx-toastr';
-import { from } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit',
@@ -32,15 +30,15 @@ export class AddEditComponent implements OnInit {
       position: ['', Validators.required],
       age: ['', Validators.required],
       country: ['', Validators.required],
-      city: ['', Validators.required],
+      city: [''],
     })
     this.id = Number(route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
-    if (this.id != 0) {
+    if (this.id !== 0) {
       this.addEdit = 'Edit';
-      this.getPlayer(this.id);
+      this.getPlayer(this.id)
     }
   }
 
@@ -55,6 +53,8 @@ export class AddEditComponent implements OnInit {
       age: this.playersForm.value.age,
       country: this.playersForm.value.country,
       city: this.playersForm.value.city,
+      lat: 0,
+      lon: 0
     }
 
     this.loading = true;

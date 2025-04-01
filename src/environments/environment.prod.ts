@@ -1,5 +1,9 @@
 export const environment = {
     production: true,
     endpoint: '',
-    apiPlayers:''
+    apiPlayers:'',
+    geoApi:'',
+    geoKey:'',
+    geoUrl:'',
+    mapUrl:'',
 }
