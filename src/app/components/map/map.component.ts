@@ -5,12 +5,11 @@ import { environment } from '../../../environments/environment';
 import { Player } from '../../interfaces/player';
 import { PlayerService } from '../../services/player.service';
 import { GeoResponse } from '../../interfaces/geo-response';
-import { LoadingComponent } from "../../shared/loading/loading.component";
 
 @Component({
   selector: 'app-map',
   standalone: true,
-  imports: [RouterModule, LoadingComponent],
+  imports: [RouterModule],
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
