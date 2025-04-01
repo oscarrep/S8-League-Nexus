@@ -53,6 +53,8 @@ export class AddEditComponent implements OnInit {
       age: this.playersForm.value.age,
       country: this.playersForm.value.country,
       city: this.playersForm.value.city,
+      lat: 0,
+      lon: 0
     }
 
     this.loading = true;

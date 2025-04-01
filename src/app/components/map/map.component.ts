@@ -36,28 +36,19 @@ export class MapComponent implements OnInit {
     leaflet.tileLayer(environment.mapUrl).addTo(this.map);
   }
 
-  getPos() {
+  setPlayerMarker(player: Player) {
+    if (!player.lat || !player.lon) {
+      console.error(`No coords for ${player.username}`);
+      return;
+    }
+
+    const icon = leaflet.icon({ iconUrl: './assets/marker-icon.png', iconSize: [25, 41] })
+
     if (navigator.geolocation) {
-      const icon = leaflet.icon({ iconUrl: './assets/marker-icon.png', iconSize: [25, 41] })
-
-      navigator.geolocation.getCurrentPosition((position) => {
-        const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
-
-        if (this.userMarker) this.userMarker = leaflet.marker(coords);
-        else {
-          this.userMarker = leaflet.marker(coords, { icon: icon, draggable: true }).addTo(this.map);
-          this.userMarker.on('dragend', (event) => {
-            const marker = event.target;
-            const pos = marker.getLatLng();
-            marker.setLatLng(pos).openPopup(
-              this.map.setView(pos)
-            )
-          })
-        }
-
-        this.map.setView(coords, 12);
-      }, () =>
-        (console.error('Could not get location')))
+      const coords: [number, number] = [player.lat, player.lon];
+      const marker = leaflet.marker(coords, { icon: icon, draggable: false }).addTo(this.map);
+      marker.bindPopup(`<b>${player.username}</b><br>${player.city || player.country}`);
+      this.map.setView(coords, 2);
     }
   }
 
@@ -68,8 +59,11 @@ export class MapComponent implements OnInit {
       this._playerService.getPlayerCoords(city, player.country).subscribe((response: GeoResponse) => {
         player.lat = response.results[0].geometry.lat
         player.lon = response.results[0].geometry.lng
-      })
-    })
+      
+      this.setPlayerMarker(player);
+      
+      });
+    });
 
   }
 
