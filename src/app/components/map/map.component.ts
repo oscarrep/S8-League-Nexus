@@ -32,7 +32,7 @@ export class MapComponent implements OnInit {
   }
 
   private initMap() {
-    this.map = leaflet.map('map').setView([41.33, 2.15], 12);
+    this.map = leaflet.map('map').setView([41.33, 2.15], 2.5);
     leaflet.tileLayer(environment.mapUrl).addTo(this.map);
   }
 
@@ -48,7 +48,6 @@ export class MapComponent implements OnInit {
       const coords: [number, number] = [player.lat, player.lon];
       const marker = leaflet.marker(coords, { icon: icon, draggable: false }).addTo(this.map);
       marker.bindPopup(`<b>${player.username}</b><br>${player.city || player.country}`);
-      this.map.setView(coords, 2);
     }
   }
 
