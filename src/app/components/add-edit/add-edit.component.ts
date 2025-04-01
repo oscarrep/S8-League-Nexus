@@ -4,10 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Player } from '../../interfaces/player';
 import { PlayerService } from '../../services/player.service';
 import { LoadingComponent } from "../../shared/loading/loading.component";
-import { routes } from '../../app.routes';
-import { Toast, ToastrService } from 'ngx-toastr';
-import { from } from 'rxjs';
-import { GeoResponse } from '../../interfaces/geo-response';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit',
@@ -41,25 +38,7 @@ export class AddEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.id !== 0) {
       this.addEdit = 'Edit';
-  
-      this._playerService.getPlayer(this.id).subscribe((data: Player) => {
-        console.log(data);
-        
-        const city = data.city ? data.city : data.country;
-  
-        this.playersForm.setValue({
-          username: data.username,
-          name: data.name,
-          team: data.team,
-          team_short: data.team_short,
-          position: data.position,
-          age: data.age,
-          country: data.country,
-          city: city,
-        });
-  
-        this.getCoords([city, data.country]);
-      });
+      this.getPlayer(this.id)
     }
   }
 
@@ -107,17 +86,10 @@ export class AddEditComponent implements OnInit {
         position: data.position,
         age: data.age,
         country: data.country,
-        city: data.city ? data.city : data.country,
+        city: data.city,
       })
       this.loading = false;
     })
   }
-
-  getCoords(location: [string, string]) {
-    this._playerService.getPlayerCoords(location).subscribe((response: GeoResponse) => {
-      console.log(response.results[0].geometry.lat, response.results[0].geometry.lng);
-    })
-  }
-
 
 }

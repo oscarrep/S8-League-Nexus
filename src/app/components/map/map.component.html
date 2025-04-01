@@ -1,6 +1,17 @@
 <div class="container">
     <div class="row">
         <div>
+            <!--
+            for each player -> getPos(lat,lng)
+            -->
+
+            @if (playerList.length !==0) {
+                @for (player of playerList; track player) { 
+                    <p>{{player.username}}: {{ player.lat }}, {{ player.lon }}</p> 
+                }
+            } 
+            @else { <app-loading></app-loading> }
+
             <button (click)="getPos()" class="btn btn-primary" type="button">show location</button>
         </div>
         <div id="map"></div>

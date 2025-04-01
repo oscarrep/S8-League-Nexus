@@ -41,7 +41,7 @@ export class PlayerService {
     return this.http.put<void>(`${this.appUrl}${this.apiUrl}${id}`, player)
   }
 
-  getPlayerCoords(location:[string, string]):Observable<GeoResponse> {
-    return this.http.get<GeoResponse>(`${this.geoApiUrl}q=${location.join(',')}&key=${this.geoApiKey}`);
+  getPlayerCoords(city:string, country:string):Observable<GeoResponse> {
+    return this.http.get<GeoResponse>(`${this.geoApiUrl}q=${city},${country}&key=${this.geoApiKey}`);
   }
 }
