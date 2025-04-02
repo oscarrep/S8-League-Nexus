@@ -4,6 +4,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
+import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import enLocale from '@fullcalendar/core/locales/en-gb';
 
 @Component({
@@ -20,15 +21,26 @@ export class CalendarComponent implements OnInit {
   ngOnInit(): void {
 
     this.calendarOptions = {
-      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
+      plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, bootstrap5Plugin],
       defaultDate: new Date(),
       headerToolbar: {
-        start: 'prev,next',
+        start: 'prev,next today',
         center: 'title',
         end: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
+      buttonText: {
+        prev: '<',
+        next: '>',
+        today:'Today',
+        month:'Month',
+        week:'Week',
+        day:'Day'
+      },
+      navlinks:true,
+      dayMaxEvents:true,
       locale: enLocale,
-      editable: false
+      editable: false,
+      themeSystem: 'bootstrap5'
     }
 
     this.calendarEvents = [
