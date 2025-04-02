@@ -10,10 +10,9 @@ import { Player } from '../interfaces/player';
 export class PlayerService {
   private appUrl: string;
   private apiUrl: string;
-  //private http = inject(HttpClient);
 
   constructor(private http: HttpClient) {
-    this.appUrl = environment.endpoint;
+    this.appUrl = environment.host;
     this.apiUrl = environment.apiPlayers;
   }
 
