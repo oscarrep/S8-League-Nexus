@@ -17,19 +17,17 @@ export class CalendarComponent implements OnInit {
   calendarOptions: any;
   calendarEvents!: any[];
 
-
-
   ngOnInit(): void {
 
     this.calendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
       defaultDate: new Date(),
-      header: {
-        left: 'prev, next',
+      headerToolbar: {
+        start: 'prev,next',
         center: 'title',
-        right: 'dayGridMonth,timeGridWeek,timeGridDay',
+        end: 'dayGridMonth,timeGridWeek,timeGridDay',
       },
-      locale:enLocale,
+      locale: enLocale,
       editable: false
     }
 
