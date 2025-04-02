@@ -22,7 +22,6 @@ export class CalendarComponent implements OnInit {
 
     this.calendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, bootstrap5Plugin],
-      defaultDate: new Date(),
       headerToolbar: {
         start: 'prev,next today',
         center: 'title',
@@ -34,9 +33,8 @@ export class CalendarComponent implements OnInit {
         today:'Today',
         month:'Month',
         week:'Week',
-        day:'Day'
+        day:'Day',
       },
-      navlinks:true,
       dayMaxEvents:true,
       locale: enLocale,
       editable: false,
@@ -60,10 +58,5 @@ export class CalendarComponent implements OnInit {
         description: 'zxc'
       }
     ]
-
-
   }
-
-
-
 }
