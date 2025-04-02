@@ -27,7 +27,7 @@ export class AddEditGameComponent implements OnInit {
       description: [''],
       start: ['', Validators.required],
       end: [''],
-      location: ['', Validators.required],
+      league: ['', Validators.required],
     })
     this.id = Number(route.snapshot.paramMap.get('id'));
   }
@@ -45,7 +45,7 @@ export class AddEditGameComponent implements OnInit {
       description: this.gameForm.value.description,
       start: this.gameForm.value.start,
       end: this.gameForm.value.end,
-      location: this.gameForm.value.location,
+      league: this.gameForm.value.league,
     }
 
     console.log(game)
@@ -78,7 +78,7 @@ export class AddEditGameComponent implements OnInit {
         decription: data.description,
         start: data.start,
         end: data.end,
-        location: data.location,
+        league: data.league,
       })
       this.loading = false;
     })

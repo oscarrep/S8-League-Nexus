@@ -28,15 +28,15 @@
                     <div class="error-text">End date is required</div>
                     }
 
-                    <input formControlName="location" type="text" class="form-control mt-3" placeholder="Location">
-                    @if(gameForm.get('age')?.hasError('required') && gameForm.get('age')?.touched){
-                    <div class="error-text">Location is required</div>
+                    <input formControlName="league" type="text" class="form-control mt-3" placeholder="League">
+                    @if(gameForm.get('league')?.hasError('required') && gameForm.get('league')?.touched){
+                    <div class="error-text">League is required</div>
                     }
 
                     <div class="center mt-3">
                         <button [disabled]="gameForm.invalid" type="submit"
                             class="btn btn-success py-2 px-3 mx-2">Add</button>
-                        <button type="button" class="btn btn-danger py-2 px-3 mx-2" routerLink="/home">Back</button>
+                        <button type="button" class="btn btn-danger py-2 px-3 mx-2" routerLink="/calendar">Back</button>
                     </div>
                 </form>
             </div>

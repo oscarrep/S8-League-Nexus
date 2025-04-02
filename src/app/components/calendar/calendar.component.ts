@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -6,6 +6,8 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import enLocale from '@fullcalendar/core/locales/en-gb';
+import { GameService } from '../../services/game.service';
+import { Game } from '../../interfaces/game';
 
 @Component({
   selector: 'app-calendar',
@@ -17,6 +19,8 @@ import enLocale from '@fullcalendar/core/locales/en-gb';
 export class CalendarComponent implements OnInit {
   calendarOptions: any;
   calendarEvents!: any[];
+  loading: boolean = false;
+  private _gameService = inject(GameService);
 
   ngOnInit(): void {
 
@@ -30,33 +34,29 @@ export class CalendarComponent implements OnInit {
       buttonText: {
         prev: '<',
         next: '>',
-        today:'Today',
-        month:'Month',
-        week:'Week',
-        day:'Day',
+        today: 'Today',
+        month: 'Month',
+        week: 'Week',
+        day: 'Day',
       },
-      dayMaxEvents:true,
+      dayMaxEvents: true,
       locale: enLocale,
-      editable: false,
+      editable: true,
+      selectable:true,
       themeSystem: 'bootstrap5'
     }
 
-    this.calendarEvents = [
-      {
-        title: 'Event',
-        start: new Date(),
-        description: 'qwe'
-      },
-      {
-        title: 'Event2',
-        start: new Date(),
-        description: 'asdf'
-      },
-      {
-        title: 'Event3',
-        start: new Date(),
-        description: 'zxc'
-      }
-    ]
+    this.getCalendarEvents();
+
   }
+
+  getCalendarEvents() {
+    this.loading = true;
+    this._gameService.getGameList().subscribe((data: Game[]) => {
+      console.log(data);
+      this.calendarEvents = data;
+      this.loading = false
+    })
+  }
+
 }
