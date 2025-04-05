@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
@@ -9,12 +9,13 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import enLocale from '@fullcalendar/core/locales/en-gb';
 import { GameService } from '../../services/game.service';
 import { Game } from '../../interfaces/game';
+import { ModalComponent } from '../modal/modal.component';
 import { EventClickArg } from '@fullcalendar/core/index.js';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [RouterModule, FullCalendarModule, CommonModule],
+  imports: [RouterModule, FullCalendarModule, ModalComponent, CommonModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
@@ -22,8 +23,8 @@ export class CalendarComponent implements OnInit {
   calendarOptions: any;
   calendarEvents!: any[];
   loading: boolean = false;
-  showEventModal: boolean = false;
-  selectedEvent!: Game;
+  showEventModal = signal(false);
+  selectedEvent = signal<Game | null>(null);
   private _gameService = inject(GameService);
 
   ngOnInit(): void {
@@ -66,17 +67,18 @@ export class CalendarComponent implements OnInit {
 
   openModal(arg: EventClickArg): void {
     const event = arg.event;
-    this.selectedEvent = {
+    this.selectedEvent.set({
       id: parseInt(event.id),
       title: event.title,
       description: event.extendedProps['description'],
       start: event.startStr,
       end: event.endStr,
       league: event.extendedProps['league'],
-    };
-    this.showEventModal = true;
+    });
+    console.log(this.selectedEvent())
+    this.showEventModal.set(true);
   }
 
-  closeModal(): void { this.showEventModal = false; }
+  closeModal(): void { this.showEventModal.set(false); }
 
 }
