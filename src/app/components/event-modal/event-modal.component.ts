@@ -3,12 +3,12 @@ import { Game } from '../../interfaces/game';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-modal',
+  selector: 'app-event-modal',
   imports: [CommonModule],
-  templateUrl: './modal.component.html',
-  styleUrl: './modal.component.scss'
+  templateUrl: './event-modal.component.html',
+  styleUrl: './event-modal.component.scss'
 })
-export class ModalComponent {
+export class EventModalComponent {
   @Input() eventSig!: Signal<Game | null>;
   @Input() closeSig!: () => void;
 }

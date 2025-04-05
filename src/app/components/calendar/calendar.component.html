@@ -7,4 +7,4 @@
     </div>
 </div>
 
-@if (showEventModal()) {<app-modal [eventSig]="selectedEvent" (closeSig)="closeModal()" />}
+@if (showEventModal()) {<app-event-modal [eventSig]="selectedEvent" (closeSig)="closeModal()" />}
