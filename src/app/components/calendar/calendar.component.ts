@@ -1,4 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
@@ -8,11 +9,12 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import enLocale from '@fullcalendar/core/locales/en-gb';
 import { GameService } from '../../services/game.service';
 import { Game } from '../../interfaces/game';
+import { EventClickArg } from '@fullcalendar/core/index.js';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [RouterModule, FullCalendarModule],
+  imports: [RouterModule, FullCalendarModule, CommonModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
@@ -20,6 +22,8 @@ export class CalendarComponent implements OnInit {
   calendarOptions: any;
   calendarEvents!: any[];
   loading: boolean = false;
+  showEventModal: boolean = false;
+  selectedEvent!: Game;
   private _gameService = inject(GameService);
 
   ngOnInit(): void {
@@ -41,9 +45,10 @@ export class CalendarComponent implements OnInit {
       },
       dayMaxEvents: true,
       locale: enLocale,
-      editable: true,
-      selectable:true,
-      themeSystem: 'bootstrap5'
+      editable: false,
+      selectable: true,
+      themeSystem: 'bootstrap5',
+      eventClick: this.openModal.bind(this),
     }
 
     this.getCalendarEvents();
@@ -58,5 +63,20 @@ export class CalendarComponent implements OnInit {
       this.loading = false
     })
   }
+
+  openModal(arg: EventClickArg): void {
+    const event = arg.event;
+    this.selectedEvent = {
+      id: parseInt(event.id),
+      title: event.title,
+      description: event.extendedProps['description'],
+      start: event.startStr,
+      end: event.endStr,
+      league: event.extendedProps['league'],
+    };
+    this.showEventModal = true;
+  }
+
+  closeModal(): void { this.showEventModal = false; }
 
 }
