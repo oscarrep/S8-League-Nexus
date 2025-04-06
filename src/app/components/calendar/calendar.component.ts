@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router, ActivatedRoute } from '@angular/router';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
@@ -31,6 +31,8 @@ export class CalendarComponent implements OnInit {
   selectedEvent = signal<Game | null>(null);
   private _gameService = inject(GameService);
 
+  constructor(private router:Router, private route:ActivatedRoute){}
+
   ngOnInit(): void {
 
     this.calendarOptions = {
@@ -58,6 +60,17 @@ export class CalendarComponent implements OnInit {
 
     this.getCalendarEvents();
 
+    this.route.paramMap.subscribe(params => {
+      const id = params.get('id');
+      if (id) {
+        this._gameService.getGame(Number(id)).subscribe(game => {
+          this.selectedEvent.set(game);
+          this.editMode.set(true);
+          this.showEventModal.set(true);
+        });
+      }
+    });
+
   }
 
   getCalendarEvents() {
@@ -69,6 +82,9 @@ export class CalendarComponent implements OnInit {
 
   openModal(arg: EventClickArg): void {
     const event = arg.event;
+
+    this.router.navigate(['./', event.id], { relativeTo: this.route });
+
     this.selectedEvent.set({
       id: parseInt(event.id),
       title: event.title,
@@ -89,6 +105,8 @@ export class CalendarComponent implements OnInit {
   }
 
   closeModal = () => {
+    this.router.navigate(['./'], { relativeTo: this.route });
+
     this.showEventModal.set(false);
     this.selectedEvent.set(null);
     this.editMode.set(false);

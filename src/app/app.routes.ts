@@ -12,9 +12,13 @@ export const routes: Routes = [
     { path: 'players/add', component: AddEditPlayerComponent },
     { path: 'players/edit/:id', component: AddEditPlayerComponent },
     { path: 'map', component: MapComponent },
-    { path: 'calendar', component: CalendarComponent },
-    { path: 'calendar/add', component: AddEditGameComponent },
-    { path: 'calendar/edit/:id', component: AddEditGameComponent },
+    { path: 'calendar',
+        children: [
+          { path: '', component: CalendarComponent },
+          { path: ':id', component: CalendarComponent },
+        ] },
+    //{ path: 'calendar/add', component: AddEditGameComponent },
+    //{ path: 'calendar/edit/:id', component: AddEditGameComponent },
     { path: 'graphs', component: GraphsComponent },
     { path: '**', redirectTo: 'home' }
 ];
