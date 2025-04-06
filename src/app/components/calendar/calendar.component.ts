@@ -11,19 +11,23 @@ import { GameService } from '../../services/game.service';
 import { Game } from '../../interfaces/game';
 import { EventModalComponent } from '../event-modal/event-modal.component';
 import { EventClickArg } from '@fullcalendar/core/index.js';
+import { AddEditGameComponent } from "../add-edit-game/add-edit-game.component";
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [RouterModule, FullCalendarModule, EventModalComponent, CommonModule],
+  imports: [RouterModule, FullCalendarModule, EventModalComponent, CommonModule, AddEditGameComponent],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
 export class CalendarComponent implements OnInit {
   calendarOptions: any;
   calendarEvents!: any[];
-  loading: boolean = false;
+
   showEventModal = signal(false);
+  showAddEventModal = signal(false);
+  editMode = signal(false);
+
   selectedEvent = signal<Game | null>(null);
   private _gameService = inject(GameService);
 
@@ -57,11 +61,9 @@ export class CalendarComponent implements OnInit {
   }
 
   getCalendarEvents() {
-    this.loading = true;
     this._gameService.getGameList().subscribe((data: Game[]) => {
       console.log(data);
       this.calendarEvents = data;
-      this.loading = false
     })
   }
 
@@ -76,9 +78,20 @@ export class CalendarComponent implements OnInit {
       league: event.extendedProps['league'],
     });
     console.log(this.selectedEvent())
+    this.editMode.set(true);
     this.showEventModal.set(true);
   }
 
-  closeModal = () => { this.showEventModal.set(false); }
+  openAddEventModal() {
+    this.selectedEvent.set(null);
+    this.editMode.set(false);
+    this.showEventModal.set(true);
+  }
+
+  closeModal = () => {
+    this.showEventModal.set(false);
+    this.selectedEvent.set(null);
+    this.editMode.set(false);
+  }
 
 }

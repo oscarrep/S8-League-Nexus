@@ -28,11 +28,19 @@ export class GameService {
     return this.http.post<void>(`${this.appUrl}${this.apiUrl}`, game)
   }
 
-  getGame(id: number): Observable<Game> {
+  getGame(id: number | undefined): Observable<Game> {
     return this.http.get<Game>(`${this.appUrl}${this.apiUrl}${id}`)
   }
 
-  updateGame(id: number, game: Game): Observable<void> {
+  updateGame(id: number | undefined, game: Game): Observable<void> {
     return this.http.put<void>(`${this.appUrl}${this.apiUrl}${id}`, game)
+  }
+
+  toDatetimeLocal(dateStr?: string): string {
+    if (!dateStr) return '';
+    const date = new Date(dateStr);
+    const timeZoneOffset = date.getTimezoneOffset() * 60000;
+    const localDate = new Date(date.getTime() - timeZoneOffset);
+    return localDate.toISOString().slice(0, 16);
   }
 }

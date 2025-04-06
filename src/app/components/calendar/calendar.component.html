@@ -1,10 +1,13 @@
 <div class="container">
     <div class="row">
         <div class="calendar">
-            <button type="button" routerLink="./add" class="btn btn-primary">Add event</button>
+            <button type="button" (click)="showAddEventModal()" class="btn btn-primary">Add event</button>
             <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
         </div>
     </div>
 </div>
 
-@if (showEventModal()) {<app-event-modal [eventSig]="selectedEvent" [onClose]="closeModal" />}
+@if (showEventModal()) {
+    <app-event-modal 
+    [eventSig]="selectedEvent" [onClose]="closeModal" (editMode)="editMode()" />
+}

@@ -1,14 +1,13 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, Input, OnInit, Signal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Game } from '../../interfaces/game';
 import { GameService } from '../../services/game.service';
-import { LoadingComponent } from "../../shared/loading/loading.component";
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
-  selector: 'app-add-edit',
-  imports: [RouterModule, ReactiveFormsModule, LoadingComponent],
+  selector: 'app-add-edit-game',
+  imports: [RouterModule, ReactiveFormsModule],
   templateUrl: './add-edit-game.component.html',
   styleUrl: './add-edit-game.component.scss'
 })
@@ -17,8 +16,9 @@ export class AddEditGameComponent implements OnInit {
   gameForm: FormGroup;
   loading: boolean = false;
   private fb = inject(FormBuilder);
-  id: number;
+  //id: number;
   addEdit: string = 'Add';
+  @Input() gameSig!: Signal<Game | null>;
 
   constructor(private _gameService: GameService, private router: Router,
     private route: ActivatedRoute, private toastr: ToastrService) {
@@ -29,13 +29,15 @@ export class AddEditGameComponent implements OnInit {
       end: [''],
       league: ['', Validators.required],
     })
-    this.id = Number(route.snapshot.paramMap.get('id'));
+    //this.id = Number(route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
-    if (this.id != 0) {
+    const game = this.gameSig?.();
+
+    if (game) {
       this.addEdit = 'Edit';
-      this.getGame(this.id);
+      this.parseGame(game);
     }
   }
 
@@ -50,49 +52,31 @@ export class AddEditGameComponent implements OnInit {
 
     console.log(game)
 
-    this.loading = true;
 
-    if (this.id !== 0) {
-      game.id = this.id;
-      this._gameService.updateGame(this.id, game).subscribe(() => {
+    if (this.gameSig && this.gameSig()?.id) {
+      game.id = this.gameSig()!.id;
+      this._gameService.updateGame(game.id, game).subscribe(() => {
         this.toastr.info(`Game ${game.title} updated`, 'Game Updated');
         this.loading = false;
         this.router.navigate(['/calendar']);
-      })
-    }
-    else {
+      });
+    } else {
       this._gameService.saveGame(game).subscribe(() => {
         this.toastr.success(`Game ${game.title} registered to database`, 'Game Registered');
         this.loading = false;
         this.router.navigate(['/calendar']);
-      })
+      });
     }
   }
 
-  getGame(id: number) {
-    this.loading = true;
-    this._gameService.getGame(id).subscribe((data: Game) => {
-      console.log(data);
-
-      const formattedStart = data.start ? this.toDatetimeLocal(data.start) : '';
-      const formattedEnd = data.end ? this.toDatetimeLocal(data.end) : '';
-
-      this.gameForm.setValue({
-        title: data.title,
-        description: data.description,
-        start: formattedStart,
-        end: formattedEnd,
-        league: data.league,
-      })
-      this.loading = false;
-    })
-  }
-
-  private toDatetimeLocal(dateStr: string): string {
-    const date = new Date(dateStr);
-    const tzOffset = date.getTimezoneOffset() * 60000;
-    const localDate = new Date(date.getTime() - tzOffset);
-    return localDate.toISOString().slice(0, 16);
+  parseGame(game:Game) {
+    this.gameForm.patchValue({
+      title: game.title,
+      description: game.description || '',
+      start: this._gameService.toDatetimeLocal(game.start),
+      end: game.end ? this._gameService.toDatetimeLocal(game.end) : '',
+      league: game.league || '',
+    });
   }
 
 }

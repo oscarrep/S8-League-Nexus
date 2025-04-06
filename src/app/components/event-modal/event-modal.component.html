@@ -3,24 +3,24 @@
         <div class="calendar-modal-bg" (click)="onClose()"></div>
         <div class="calendar-modal-content block-center text-center">
             <button type="button" class="close-btn btn btn-primary" (click)="onClose()">X</button>
-            <h2>{{ eventSig()?.title }}</h2>
-            <p>{{ eventSig()?.description }}</p>
-            <div>
-                <p>
-                    <b>Game start</b>
-                    <br>
-                    {{ eventSig()?.start | date: 'MMMM d HH:mm'}}
-                </p>
-            </div>
-            <div>
-                <p>
-                    <b>Game end</b>
-                    <br>
-                    {{ eventSig()?.end | date: 'MMMM d HH:mm'}}
-                </p>
-            </div>
-            <button type="button" routerLink="./edit/{{eventSig()?.id}}" class="btn btn-warning"> ✏ </button>
-            <button type="button" routerLink="./add" class="ms-2 btn btn-primary"> 🗑 </button>
+            @if (editMode()) { <app-add-edit-game [gameSig]="eventSig" /> }
+
+            @else {
+                <h2>{{ eventSig()?.title }}</h2>
+                <p>{{ eventSig()?.description }}</p>
+        
+                <div>
+                  <b>Game start</b><br />
+                  {{ eventSig()?.start | date: 'MMMM d HH:mm' }}
+                </div>
+                <div>
+                  <b>Game end</b><br />
+                  {{ eventSig()?.end ? (eventSig()?.end | date: 'MMMM d HH:mm') : '—' }}
+                </div>
+        
+                <button type="button" class="btn btn-primary" (click)="toggleEditmode()">✏</button>
+                <button type="button" class="ms-2 btn btn-primary">🗑</button>
+              }
         </div>
     </div>
 </div>
