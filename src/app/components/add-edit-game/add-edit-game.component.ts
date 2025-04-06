@@ -57,14 +57,14 @@ export class AddEditGameComponent implements OnInit {
       this._gameService.updateGame(this.id, game).subscribe(() => {
         this.toastr.info(`Game ${game.title} updated`, 'Game Updated');
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/calendar']);
       })
     }
     else {
       this._gameService.saveGame(game).subscribe(() => {
         this.toastr.success(`Game ${game.title} registered to database`, 'Game Registered');
         this.loading = false;
-        this.router.navigate(['/']);
+        this.router.navigate(['/calendar']);
       })
     }
   }
@@ -73,15 +73,26 @@ export class AddEditGameComponent implements OnInit {
     this.loading = true;
     this._gameService.getGame(id).subscribe((data: Game) => {
       console.log(data);
+
+      const formattedStart = data.start ? this.toDatetimeLocal(data.start) : '';
+      const formattedEnd = data.end ? this.toDatetimeLocal(data.end) : '';
+
       this.gameForm.setValue({
-        tilte: data.title,
-        decription: data.description,
-        start: data.start,
-        end: data.end,
+        title: data.title,
+        description: data.description,
+        start: formattedStart,
+        end: formattedEnd,
         league: data.league,
       })
       this.loading = false;
     })
+  }
+
+  private toDatetimeLocal(dateStr: string): string {
+    const date = new Date(dateStr);
+    const tzOffset = date.getTimezoneOffset() * 60000;
+    const localDate = new Date(date.getTime() - tzOffset);
+    return localDate.toISOString().slice(0, 16);
   }
 
 }

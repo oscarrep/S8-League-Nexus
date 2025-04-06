@@ -4,9 +4,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Player } from '../../interfaces/player';
 import { PlayerService } from '../../services/player.service';
 import { LoadingComponent } from "../../shared/loading/loading.component";
-import { routes } from '../../app.routes';
-import { Toast, ToastrService } from 'ngx-toastr';
-import { from } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-add-edit',

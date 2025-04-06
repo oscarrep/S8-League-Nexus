@@ -79,6 +79,6 @@ export class CalendarComponent implements OnInit {
     this.showEventModal.set(true);
   }
 
-  closeModal(): void { this.showEventModal.set(false); }
+  closeModal = () => { this.showEventModal.set(false); }
 
 }

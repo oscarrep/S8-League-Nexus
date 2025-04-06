@@ -1,8 +1,8 @@
 <div class="container">
     <div class="calendar-modal flex-center">
-        <div class="calendar-modal-bg" (click)="closeSig()"></div>
+        <div class="calendar-modal-bg" (click)="onClose()"></div>
         <div class="calendar-modal-content block-center text-center">
-            <button type="button" class="close-btn btn btn-primary" (click)="closeSig()">X</button>
+            <button type="button" class="close-btn btn btn-primary" (click)="onClose()">X</button>
             <h2>{{ eventSig()?.title }}</h2>
             <p>{{ eventSig()?.description }}</p>
             <div>
@@ -19,7 +19,7 @@
                     {{ eventSig()?.end | date: 'MMMM d HH:mm'}}
                 </p>
             </div>
-            <button type="button" routerLink="./add" class="btn btn-primary"> ✏ </button>
+            <button type="button" routerLink="./edit/{{eventSig()?.id}}" class="btn btn-warning"> ✏ </button>
             <button type="button" routerLink="./add" class="ms-2 btn btn-primary"> 🗑 </button>
         </div>
     </div>
