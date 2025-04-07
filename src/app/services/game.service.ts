@@ -10,16 +10,12 @@ import { Game } from '../interfaces/game';
 export class GameService {
   private appUrl: string;
   private apiUrl: string;
-  private lolEsportsUrl: string;
-  private english: string;
-  private spanish: string;
+
 
   constructor(private http: HttpClient) {
     this.appUrl = environment.host;
     this.apiUrl = environment.apiGames;
-    this.lolEsportsUrl = environment.esportsUrl;
-    this.english = environment.esportsEn;
-    this.spanish = environment.esportsEsp;
+
   }
 
   getGameList(): Observable<Game[]> {
@@ -48,13 +44,5 @@ export class GameService {
     const timeZoneOffset = date.getTimezoneOffset() * 60000;
     const localDate = new Date(date.getTime() - timeZoneOffset);
     return localDate.toISOString().slice(0, 16);
-  }
-
-  getLeagues(): Observable<any> {
-    return this.http.get<any>(`${this.lolEsportsUrl}/getLeagues${this.english}`);
-  }
-  
-  getLeagueSchedule(id: string): Observable<any> {
-    return this.http.get<any>(`${this.lolEsportsUrl}/getSchedule${this.english}&leagueId=${id}`);
   }
 }
