@@ -20,7 +20,6 @@ export class EventModalComponent {
   @Input() editMode!: Signal<boolean>;
   @Input() setEditMode!: (value: boolean) => void;
 
-  //editMode = signal(false);
   addMode = computed(() => !this.eventSig() || this.eventSig()?.id == null);
 
   private fb = inject(FormBuilder);

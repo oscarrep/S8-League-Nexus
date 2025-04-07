@@ -11,12 +11,11 @@ import { GameService } from '../../services/game.service';
 import { Game } from '../../interfaces/game';
 import { EventModalComponent } from '../event-modal/event-modal.component';
 import { EventClickArg } from '@fullcalendar/core/index.js';
-import { AddEditGameComponent } from "../add-edit-game/add-edit-game.component";
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [RouterModule, FullCalendarModule, EventModalComponent, CommonModule, AddEditGameComponent],
+  imports: [RouterModule, FullCalendarModule, EventModalComponent, CommonModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })

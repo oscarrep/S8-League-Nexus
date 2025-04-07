@@ -17,9 +17,9 @@ export class GameService {
   constructor(private http: HttpClient) {
     this.appUrl = environment.host;
     this.apiUrl = environment.apiGames;
-    this.lolEsportsUrl = environment.lolEsports;
-    this.english = environment.localeEn;
-    this.spanish = environment.localeEsp;
+    this.lolEsportsUrl = environment.esportsUrl;
+    this.english = environment.esportsEn;
+    this.spanish = environment.esportsEsp;
   }
 
   getGameList(): Observable<Game[]> {
@@ -53,6 +53,7 @@ export class GameService {
   getLeagues(): Observable<any> {
     return this.http.get<any>(`${this.lolEsportsUrl}/getLeagues${this.english}`);
   }
+  
   getLeagueSchedule(id: string): Observable<any> {
     return this.http.get<any>(`${this.lolEsportsUrl}/getSchedule${this.english}&leagueId=${id}`);
   }
