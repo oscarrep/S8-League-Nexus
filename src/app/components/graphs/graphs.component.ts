@@ -102,7 +102,9 @@ export class GraphsComponent implements OnInit {
         scales: {
           y: {
             beginAtZero: true,
+            ticks: { precision: 0 }
           },
+
         },
       },
     });

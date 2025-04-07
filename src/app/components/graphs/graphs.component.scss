@@ -1,0 +1,32 @@
+.container {
+    margin-top: 20px;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.graph-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.graph {
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f8f9fa;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 45%;
+    text-align: center;
+}
+
+.graph h4 {
+    margin-bottom: 15px;
+}
+
+.graph canvas {
+    max-width: 100%;
+}
