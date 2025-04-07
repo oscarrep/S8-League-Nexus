@@ -11,9 +11,11 @@ export class GameService {
   private appUrl: string;
   private apiUrl: string;
 
+
   constructor(private http: HttpClient) {
     this.appUrl = environment.host;
     this.apiUrl = environment.apiGames;
+
   }
 
   getGameList(): Observable<Game[]> {
