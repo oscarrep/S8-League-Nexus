@@ -9,10 +9,10 @@ import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-add-edit',
   imports: [RouterModule, ReactiveFormsModule, LoadingComponent],
-  templateUrl: './add-edit.component.html',
-  styleUrl: './add-edit.component.scss'
+  templateUrl: './add-edit-player.component.html',
+  styleUrl: './add-edit-player.component.scss'
 })
-export class AddEditComponent implements OnInit {
+export class AddEditPlayerComponent implements OnInit {
 
   playersForm: FormGroup;
   loading: boolean = false;

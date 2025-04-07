@@ -15,7 +15,7 @@ export class PlayerService {
   private geoApiKey: string;
 
   constructor(private http: HttpClient) {
-    this.appUrl = environment.endpoint;
+    this.appUrl = environment.host;
     this.apiUrl = environment.apiPlayers;
     this.geoApiUrl = environment.geoUrl;
     this.geoApiKey = environment.geoKey;

@@ -1,1 +1,14 @@
-<p>calendar works!</p>
+<div class="container">
+    <div class="row">
+        <div class="calendar">
+            <button type="button" (click)="showAddEventModal()" class="btn btn-primary">Add event</button>
+            <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
+        </div>
+    </div>
+</div>
+
+@if (showEventModal()) {
+    <app-event-modal 
+    [eventSig]="selectedEvent" [onClose]="closeModal" 
+    [setEditMode]="editMode.set" [editMode]="editMode"/>
+}

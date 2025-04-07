@@ -3,7 +3,7 @@
 <div class="container">
     <h2 class="my-4 title">PLAYER LIST</h2>
 
-    <button type="button" class="btn-primary btn right mb-2" routerLink="/add">Add Player</button>
+    <button type="button" class="btn-primary btn right mb-2" routerLink="./add">Add Player</button>
     @if(playerList.length>0){
     <table class="table table-hover">
         <thead>
@@ -34,7 +34,7 @@
                 <td>{{player.country}}</td>
                 }
                 <td>
-                    <button type="button" class="btn btn-warning" routerLink="/edit/{{player.id}}">✏</button>
+                    <button type="button" class="btn btn-warning" routerLink="./edit/{{player.id}}">✏</button>
                     <button (click)="deletePlayer(player.id!)" type="button" class="btn btn-danger ms-3">🗑</button>
                 </td>
             </tr>
