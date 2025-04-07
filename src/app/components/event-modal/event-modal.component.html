@@ -6,21 +6,21 @@
             @if (editMode()) { <app-add-edit-game [gameSig]="eventSig" /> }
 
             @else {
-                <h2>{{ eventSig()?.title }}</h2>
-                <p>{{ eventSig()?.description }}</p>
-        
-                <div>
-                  <b>Game start</b><br />
-                  {{ eventSig()?.start | date: 'MMMM d HH:mm' }}
-                </div>
-                <div>
-                  <b>Game end</b><br />
-                  {{ eventSig()?.end ? (eventSig()?.end | date: 'MMMM d HH:mm') : '—' }}
-                </div>
-        
-                <button type="button" class="mt-3 btn btn-warning" (click)="toggleEditmode()">✏</button>
-                <button type="button" class="mt-3 ms-2 btn btn-danger">🗑</button>
-              }
+            <h2>{{ eventSig()?.title }}</h2>
+            <p>{{ eventSig()?.description }}</p>
+
+            <div>
+                <b>Game start</b><br />
+                {{ eventSig()?.start | date: 'MMMM d HH:mm' }}
+            </div>
+            <div>
+                <b>Game end</b><br />
+                {{ eventSig()?.end ? (eventSig()?.end | date: 'MMMM d HH:mm') : '—' }}
+            </div>
+
+            <button type="button" class="mt-3 btn btn-warning" (click)="toggleEditMode()">✏</button>
+            <button type="button" class="mt-3 ms-2 btn btn-danger" (click)="deleteEvent()">🗑</button>
+            }
         </div>
     </div>
 </div>

@@ -9,5 +9,6 @@
 
 @if (showEventModal()) {
     <app-event-modal 
-    [eventSig]="selectedEvent" [onClose]="closeModal" (editMode)="editMode()" />
+    [eventSig]="selectedEvent" [onClose]="closeModal" 
+    [setEditMode]="editMode.set" [editMode]="editMode"/>
 }

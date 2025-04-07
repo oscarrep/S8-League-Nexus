@@ -31,7 +31,7 @@ export class CalendarComponent implements OnInit {
   selectedEvent = signal<Game | null>(null);
   private _gameService = inject(GameService);
 
-  constructor(private router:Router, private route:ActivatedRoute){}
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -56,16 +56,29 @@ export class CalendarComponent implements OnInit {
       selectable: true,
       themeSystem: 'bootstrap5',
       eventClick: this.openModal.bind(this),
+      dateClick: this.openAddModal.bind(this),
     }
 
     this.getCalendarEvents();
 
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
-      if (id) {
+      if (id === 'add') {
+        this.selectedEvent.set({
+          id: 0,
+          title: '',
+          description: '',
+          start: '',
+          end: '',
+          league: ''
+        });
+
+        this.editMode.set(true);
+        this.showEventModal.set(true);
+      } else if (id) {
         this._gameService.getGame(Number(id)).subscribe(game => {
           this.selectedEvent.set(game);
-          this.editMode.set(true);
+          this.editMode.set(false);
           this.showEventModal.set(true);
         });
       }
@@ -75,7 +88,6 @@ export class CalendarComponent implements OnInit {
 
   getCalendarEvents() {
     this._gameService.getGameList().subscribe((data: Game[]) => {
-      console.log(data);
       this.calendarEvents = data;
     })
   }
@@ -93,23 +105,35 @@ export class CalendarComponent implements OnInit {
       end: event.endStr,
       league: event.extendedProps['league'],
     });
-    console.log(this.selectedEvent())
-    this.editMode.set(true);
-    this.showEventModal.set(true);
-  }
-
-  openAddEventModal() {
-    this.selectedEvent.set(null);
     this.editMode.set(false);
     this.showEventModal.set(true);
   }
 
+  openAddModal(arg: { dateStr: string }) {
+    this.router.navigate(['./add'], { relativeTo: this.route });
+
+    const startDate = arg.dateStr;
+
+    this.selectedEvent.set({
+      title: '',
+      description: '',
+      start: startDate,
+      end: '',
+      league: ''
+    });
+
+    this.editMode.set(true);
+    this.showEventModal.set(true);
+  }
+
   closeModal = () => {
-    this.router.navigate(['./'], { relativeTo: this.route });
+    this.router.navigate(['/calendar']);
 
     this.showEventModal.set(false);
     this.selectedEvent.set(null);
     this.editMode.set(false);
   }
+
+  toggleEditMode() { this.editMode.update(value => !value); }
 
 }

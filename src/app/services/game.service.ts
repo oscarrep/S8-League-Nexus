@@ -20,7 +20,7 @@ export class GameService {
     return this.http.get<Game[]>(`${this.appUrl}${this.apiUrl}`);
   }
 
-  deleteGame(id: number): Observable<void> {
+  deleteGame(id: number | undefined): Observable<void> {
     return this.http.delete<void>(`${this.appUrl}${this.apiUrl}${id}`)
   }
 
