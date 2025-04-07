@@ -1,5 +1,21 @@
-.calendar {
-  height: 70vh;
-  width: 100%;
+.calendar-container {
+  width: 85%;
   margin-top: 20px;
+}
+
+.full-calendar {
+  background-color: #FAFAFA;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.flex-center{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.block-center{
+  justify-content: center;
+  align-items: center;
+  display: block;
 }
