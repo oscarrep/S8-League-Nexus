@@ -36,7 +36,7 @@ export class PlayerListComponent implements OnInit {
       if (addMode) {
         this.openAddPlayerModal();
       } else if (id && !isNaN(+id)) {
-        const player = this.playerList.find(p => p.id === +id);
+        const player = this.playerList.find(player => player.id === +id);
         if (player) this.openPlayerModal(player);
       }
     });
@@ -56,14 +56,13 @@ export class PlayerListComponent implements OnInit {
   }
 
   openPlayerModal(player: Player): void {
-    this.router.navigate(['./', player.id], { relativeTo: this.route });
+    this.router.navigate(['/players', player.id]);
     this.selectedPlayer.set(player);
-    this.editMode.set(true);
     this.showPlayerModal.set(true);
   }
 
   openAddPlayerModal() {
-    this.router.navigate(['./add'], { relativeTo: this.route });
+    this.router.navigate(['/players/add']);
     this.selectedPlayer.set({
       username: '',
       name: '',
@@ -76,15 +75,11 @@ export class PlayerListComponent implements OnInit {
       lat: 0,
       lon: 0
     });
-    this.editMode.set(true);
     this.showPlayerModal.set(true);
   }
 
   closeModal() {
     this.router.navigate(['/players']);
-    this.showPlayerModal.set(false);
-    this.selectedPlayer.set(null);
-    this.editMode.set(false);
   }
 
   toggleEditMode() { this.editMode.update(value => !value); }

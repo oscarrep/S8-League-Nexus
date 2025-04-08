@@ -1,12 +1,37 @@
-.list{
-    border-bottom-color:rgb(255, 255, 255) ;
+.list {
+    border-bottom-color: rgb(255, 255, 255);
 }
 
-.right{
-    position: relative;
-    left: 92%;
+.player-list-container {
+    display: block;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.title{
+.button-add {
+    margin-left: auto;
+    background-color: #00e4bf;
+    border:none;
+    font-size: 24px;
+    font-weight: bolder;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    line-height: 1;
+    padding: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        background-color: #00c4a7;
+        cursor: pointer;
+    }
+
+}
+
+.title {
     text-align: center;
 }

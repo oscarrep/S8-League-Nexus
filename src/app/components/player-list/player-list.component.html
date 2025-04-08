@@ -1,49 +1,50 @@
 <div class="container">
-
-    <button type="button" class="btn-primary btn right mb-2" (click)="openAddPlayerModal()">Add Player</button>
-    @if(playerList.length>0){
-    <table class="table table-hover">
-        <thead>
-            <tr class="table-dark">
-                <th scope="col">Username</th>
-                <th scope="col">Name</th>
-                <th scope="col">Team</th>
-                <th scope="col">Position</th>
-                <th scope="col">Age</th>
-                <th scope="col">Nationality</th> <!-- city, country -->
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
-            @for(player of playerList; track player){
-            <tr class="table-active list">
-                <td>{{player.username}}</td>
-                <td>{{player.name}}</td>
-                <td>{{player.team_short}}, {{player.team}}</td>
-                <td>{{player.position}}</td>
-                <td>{{player.age}}</td>
-                @if(player.city && player.city != player.country)
-                {
-                <td>{{player.city}}, {{player.country}}</td>
+    <div class="player-list-container">
+        <button type="button" class="button-add my-3" (click)="openAddPlayerModal()">+</button>
+        @if(playerList.length>0){
+        <table class="table table-hover">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">Username</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Team</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Nationality</th> <!-- city, country -->
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @for(player of playerList; track player){
+                <tr class="table-active list">
+                    <td>{{player.username}}</td>
+                    <td>{{player.name}}</td>
+                    <td>{{player.team_short}}, {{player.team}}</td>
+                    <td>{{player.position}}</td>
+                    <td>{{player.age}}</td>
+                    @if(player.city && player.city != player.country)
+                    {
+                    <td>{{player.city}}, {{player.country}}</td>
+                    }
+                    @else
+                    {
+                    <td>{{player.country}}</td>
+                    }
+                    <td>
+                        <button type="button" class="btn btn-warning" (click)="openPlayerModal(player)">✏</button>
+                        <button (click)="deletePlayer(player.id!)" type="button" class="btn btn-danger ms-3">🗑</button>
+                    </td>
+                </tr>
                 }
-                @else
-                {
-                <td>{{player.country}}</td>
-                }
-                <td>
-                    <button type="button" class="btn btn-warning" (click)="openPlayerModal(player)">✏</button>
-                    <button (click)="deletePlayer(player.id!)" type="button" class="btn btn-danger ms-3">🗑</button>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
-    }
-    @else {
-    <h5>No player data</h5>
-    }
+            </tbody>
+        </table>
+        }
+        @else {
+        <h5>No player data</h5>
+        }
+    </div>
 
     @if(showPlayerModal()){
-        <app-player-modal [playerSig]="selectedPlayer" [onClose]="closeModal" [setEditMode]="editMode.set" [editMode]="editMode" />
+    <app-player-modal [playerSig]="selectedPlayer" [onClose]="closeModal" [setEditMode]="editMode.set" />
     }
 </div>

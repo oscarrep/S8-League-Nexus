@@ -17,7 +17,6 @@ export class PlayerModalComponent {
   @Input() playerSig!: Signal<Player | null>;
   @Input() onClose!: () => void;
 
-  @Input() editMode!: Signal<boolean>;
   @Input() setEditMode!: (value: boolean) => void;
 
   addMode = computed(() => !this.playerSig() || this.playerSig()?.id == null);
