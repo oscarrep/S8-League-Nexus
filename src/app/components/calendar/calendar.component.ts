@@ -9,13 +9,13 @@ import bootstrap5Plugin from '@fullcalendar/bootstrap5';
 import enLocale from '@fullcalendar/core/locales/en-gb';
 import { GameService } from '../../services/game.service';
 import { Game } from '../../interfaces/game';
-import { EventModalComponent } from '../event-modal/event-modal.component';
+import { ModalComponent } from '../modal/modal.component';
 import { EventClickArg } from '@fullcalendar/core/index.js';
 
 @Component({
   selector: 'app-calendar',
   standalone: true,
-  imports: [RouterModule, FullCalendarModule, EventModalComponent, CommonModule],
+  imports: [RouterModule, FullCalendarModule, ModalComponent, CommonModule],
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })

@@ -3,11 +3,11 @@ import { Player } from '../../interfaces/player';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { PlayerService } from '../../services/player.service';
 import { ToastrService } from 'ngx-toastr';
-import { PlayerModalComponent } from "../player-modal/player-modal.component";
+import { ModalComponent } from '../modal/modal.component';
 
 @Component({
   selector: 'app-player-list',
-  imports: [RouterModule, PlayerModalComponent],
+  imports: [RouterModule, ModalComponent],
   templateUrl: './player-list.component.html',
   styleUrl: './player-list.component.scss'
 })
