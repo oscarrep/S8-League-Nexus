@@ -5,7 +5,7 @@ import { GraphsComponent } from './components/graphs/graphs.component';
 import { PlayerListComponent } from './components/player-list/player-list.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '', redirectTo: 'players', pathMatch: 'full' },
   {
     path: 'players', children: [
       { path: '', component: PlayerListComponent },
@@ -21,5 +21,5 @@ export const routes: Routes = [
     ]
   },
   { path: 'graphs', component: GraphsComponent },
-  { path: '**', redirectTo: 'home' }
+  { path: '**', redirectTo: 'players' }
 ];
