@@ -29,7 +29,6 @@ export class AddEditGameComponent implements OnInit {
       end: [''],
       league: ['', Validators.required],
     })
-    //this.id = Number(route.snapshot.paramMap.get('id'));
   }
 
   ngOnInit(): void {
@@ -57,13 +56,11 @@ export class AddEditGameComponent implements OnInit {
       game.id = this.gameSig()!.id;
       this._gameService.updateGame(game.id, game).subscribe(() => {
         this.toastr.info(`Game ${game.title} updated`, 'Game Updated');
-        this.loading = false;
         this.router.navigate(['/calendar']);
       });
     } else {
       this._gameService.saveGame(game).subscribe(() => {
         this.toastr.success(`Game ${game.title} registered to database`, 'Game Registered');
-        this.loading = false;
         this.router.navigate(['/calendar']);
       });
     }
