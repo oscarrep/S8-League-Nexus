@@ -14,7 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AddEditGameComponent implements OnInit {
 
   gameForm: FormGroup;
-  loading: boolean = false;
   private fb = inject(FormBuilder);
   //id: number;
   addEdit: string = 'Add';

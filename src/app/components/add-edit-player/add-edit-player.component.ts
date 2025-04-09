@@ -14,7 +14,6 @@ import { ToastrService } from 'ngx-toastr';
 export class AddEditPlayerComponent implements OnInit {
 
   playersForm: FormGroup;
-  loading: boolean = false;
   private fb = inject(FormBuilder);
   addEdit: string = 'Add';
   @Input() playerSig!: Signal<Player | null>;
