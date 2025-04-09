@@ -1,14 +1,19 @@
 <header>
     <div class="row">
-        <div class="header-bg d-flex">
-            <div class="navbar">
-                <div routerLink="/players" class="ms-3 my-3 riot"></div>
-                <div routerLink="/players" class="ms-5 lec"></div>
-                    <a class="mx-5" routerLink="/players">PLAYERS</a>
-                    <a class="mx-5" routerLink="/map">MAP</a>
-                    <a class="mx-5" routerLink="/calendar">CALENDAR</a>
-                    <a class="mx-5" routerLink="/graphs">GRAPHS</a>
+        <div class="header header-bg d-flex align-items-center px-3">
+            <div class="d-flex align-items-center my-3">
+                <div routerLink="/players" class="riot ms-3"></div>
+                <div routerLink="/players" class="lec ms-5"></div>
             </div>
+
+            <div class="hamburger d-md-none" (click)="toggleMenu()"> ☰ </div>
+
+            <nav [ngClass]="{ 'nav-links': true, 'open': menu }">
+                <a class="ms-5" routerLink="/players">PLAYERS</a>
+                <a class="ms-5" routerLink="/map">MAP</a>
+                <a class="ms-5" routerLink="/calendar">CALENDAR</a>
+                <a class="ms-5" routerLink="/graphs">GRAPHS</a>
+            </nav>
         </div>
     </div>
 </header>
