@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row flex-center">
         <div class="calendar-container">
-            <button type="button" (click)="showAddEventModal()" class="button-add mb-3">+</button>
+            <button type="button" (click)="openAddModal({ dateStr: date() })" class="button-add mb-3">+</button>
             <div class="full-calendar">
                 <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
             </div>
@@ -10,5 +10,5 @@
 </div>
 
 @if (showEventModal()) {
-<app-modal [eventSig]="selectedEvent" [onClose]="closeModal" [setEditMode]="editMode.set" [editMode]="editMode" />
+<app-modal [eventSig]="selectedEvent" [onClose]="closeModal" [setEditMode]="editMode.set" [editMode]="editMode"/>
 }

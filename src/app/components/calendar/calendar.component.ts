@@ -30,6 +30,8 @@ export class CalendarComponent implements OnInit {
   selectedEvent = signal<Game | null>(null);
   private _gameService = inject(GameService);
 
+  date = signal(new Date().toISOString().split('T')[0]);
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -94,7 +96,7 @@ export class CalendarComponent implements OnInit {
   openModal(arg: EventClickArg): void {
     const event = arg.event;
 
-    this.router.navigate(['./', event.id], { relativeTo: this.route });
+    this.router.navigate(['/calendar', event.id]);
 
     this.selectedEvent.set({
       id: parseInt(event.id),
@@ -109,7 +111,7 @@ export class CalendarComponent implements OnInit {
   }
 
   openAddModal(arg: { dateStr: string }) {
-    this.router.navigate(['./add'], { relativeTo: this.route });
+    this.router.navigate(['calendar/add']);
 
     const startDate = arg.dateStr;
 
@@ -122,7 +124,7 @@ export class CalendarComponent implements OnInit {
     });
 
     this.editMode.set(true);
-    this.showEventModal.set(true);
+    this.showAddEventModal.set(true);
   }
 
   closeModal = () => {
