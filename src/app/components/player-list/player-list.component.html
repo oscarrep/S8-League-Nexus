@@ -6,11 +6,11 @@
             <thead>
                 <tr class="table-dark">
                     <th scope="col">Username</th>
-                    <th scope="col">Name</th>
+                    <th class="hide-mobile" scope="col">Name</th>
                     <th scope="col">Team</th>
                     <th scope="col">Position</th>
                     <th scope="col">Age</th>
-                    <th scope="col">Nationality</th> <!-- city, country -->
+                    <th class="hide-mobile" scope="col">Nationality</th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -18,18 +18,20 @@
                 @for(player of playerList; track player){
                 <tr class="table-active list">
                     <td>{{player.username}}</td>
-                    <td>{{player.name}}</td>
-                    <td>{{player.team_short}}, {{player.team}}</td>
+                    <td class="hide-mobile">{{player.name}}</td>
+                    <td>{{player.team_short}}<span class="hide-mobile">, {{player.team}}</span></td>
                     <td>{{player.position}}</td>
                     <td>{{player.age}}</td>
+
                     @if(player.city && player.city != player.country)
                     {
-                    <td>{{player.city}}, {{player.country}}</td>
+                    <td class="hide-mobile">{{player.city}}, {{player.country}}</td>
                     }
                     @else
                     {
-                    <td>{{player.country}}</td>
+                    <td class="hide-mobile">{{player.country}}</td>
                     }
+
                     <td>
                         <button type="button" class="btn btn-warning" (click)="openPlayerModal(player)">✏</button>
                         <button (click)="deletePlayer(player.id!)" type="button" class="btn btn-danger ms-3">🗑</button>

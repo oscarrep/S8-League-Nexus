@@ -29,9 +29,18 @@
         background-color: #00c4a7;
         cursor: pointer;
     }
+}
 
+.edit{
+    background-color: #FFCA2B;
 }
 
 .title {
     text-align: center;
 }
+
+@media (min-width: 320px) and (max-width: 767px) {
+    .hide-mobile {
+      display: none !important;
+    }
+  }
