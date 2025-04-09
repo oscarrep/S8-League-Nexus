@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit {
   selectedEvent = signal<Game | null>(null);
   private _gameService = inject(GameService);
 
-  date = signal(new Date().toISOString().split('T')[0]);
+  date = signal(new Date().toISOString());
 
   constructor(private router: Router, private route: ActivatedRoute) { }
 
@@ -110,15 +110,13 @@ export class CalendarComponent implements OnInit {
     this.showEventModal.set(true);
   }
 
-  openAddModal(arg: { dateStr: string }) {
+  openAddModal() {
     this.router.navigate(['calendar/add']);
-
-    const startDate = arg.dateStr;
 
     this.selectedEvent.set({
       title: '',
       description: '',
-      start: startDate,
+      start: '',
       end: '',
       league: ''
     });
