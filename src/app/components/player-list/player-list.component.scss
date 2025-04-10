@@ -8,31 +8,26 @@
     align-items: center;
 }
 
-.button-add {
-    margin-left: auto;
-    background-color: #00e4bf;
-    border:none;
-    font-size: 24px;
-    font-weight: bolder;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    text-align: center;
-    line-height: 1;
-    padding: 0;
-
+.button-container {
     display: flex;
-    align-items: center;
     justify-content: center;
-
-    &:hover{
-        background-color: #00c4a7;
-        cursor: pointer;
-    }
+    gap: 15px;
 }
 
-.edit{
+.edit {
     background-color: #FFCA2B;
+}
+
+.delete {
+    background-color: #DC3545;
+}
+
+.edit,
+.delete {
+    border-radius: 8px;
+    border: none;
+    width: 50px;
+    height: 50px;
 }
 
 .title {
@@ -41,6 +36,30 @@
 
 @media (min-width: 320px) and (max-width: 767px) {
     .hide-mobile {
-      display: none !important;
+        display: none;
     }
-  }
+
+    .button-container {
+        display: block;
+    }
+
+    .edit,
+    .delete {
+        width: 30px;
+        height: 30px;
+        font-size: small;
+    }
+
+    .delete {
+        margin-top: 10px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .hide-tablet {
+        display: none;
+    }
+}

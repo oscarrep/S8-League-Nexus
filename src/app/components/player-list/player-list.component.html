@@ -19,7 +19,7 @@
                 <tr class="table-active list">
                     <td>{{player.username}}</td>
                     <td class="hide-mobile">{{player.name}}</td>
-                    <td>{{player.team_short}}<span class="hide-mobile">, {{player.team}}</span></td>
+                    <td>{{player.team_short}}<span class="hide-mobile hide-tablet">, {{player.team}}</span></td>
                     <td>{{player.position}}</td>
                     <td>{{player.age}}</td>
 
@@ -33,8 +33,11 @@
                     }
 
                     <td>
-                        <button type="button" class="btn btn-warning" (click)="openPlayerModal(player)">✏</button>
-                        <button (click)="deletePlayer(player.id!)" type="button" class="btn btn-danger ms-3">🗑</button>
+                        <div class="button-container">
+                            <button type="button" class="edit" (click)="openPlayerModal(player)">✏</button>
+                            <button (click)="deletePlayer(player.id!)" type="button"
+                                class="delete btn btn-danger">🗑</button>
+                        </div>
                     </td>
                 </tr>
                 }
