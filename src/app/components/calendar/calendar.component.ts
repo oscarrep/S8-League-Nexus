@@ -32,6 +32,20 @@ export class CalendarComponent implements OnInit {
 
   date = signal(new Date().toISOString());
 
+  smallButtons = {
+    today: 'Now',
+    month: 'M',
+    week: 'W',
+    day: 'D'
+  };
+
+  buttons = {
+    today: 'Today',
+    month: 'Month',
+    week: 'Week',
+    day: 'Day'
+  };
+
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -46,10 +60,10 @@ export class CalendarComponent implements OnInit {
       buttonText: {
         prev: '<',
         next: '>',
-        today: 'Today',
-        month: 'Month',
-        week: 'Week',
-        day: 'Day',
+        today: this.buttons.today,
+        month: this.buttons.month,
+        week: this.buttons.week,
+        day: this.buttons.day,
       },
       dayMaxEvents: true,
       locale: enLocale,
@@ -85,6 +99,18 @@ export class CalendarComponent implements OnInit {
       }
     });
 
+  }
+
+  responsiveButtonText() {
+    const isMobile = window.innerWidth < 768;
+  
+    const buttonText = isMobile
+      ? { today: 'Now', month: 'M', week: 'W', day: 'D' }
+      : { today: 'Today', month: 'Month', week: 'Week', day: 'Day' };
+  
+    if (this.calendarOptions) {
+      this.calendarOptions.buttonText = buttonText;
+    }
   }
 
   getCalendarEvents() {
