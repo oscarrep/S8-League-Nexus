@@ -88,6 +88,27 @@ nav.nav-links a:hover {
     }
 }
 
+@media (min-width: 320px) and (max-width:374px) {
+    .hamburger {
+        display: block;
+        margin-left: -15%;
+    }
+}
+
+@media (min-width: 375px) and (max-width:425px) {
+    .hamburger {
+        display: block;
+        margin-left: -5%;
+    }
+}
+
+@media (min-width: 426px) and (max-width:767px) {
+    .hamburger {
+        display: block;
+        right:-45%
+    }
+}
+
 @media (min-width: 320px) and (max-width: 767px) {
     .hamburger {
         display: block;
