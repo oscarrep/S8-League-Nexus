@@ -80,17 +80,20 @@ export class GraphsComponent implements OnInit {
         })
         .forEach(game => {
           const date = new Date(game.start);
-          const month = date.toLocaleString('default', { month: 'short', year: 'numeric' });
-          monthBars[month] = (monthBars[month] || 0) + 1;
+          const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`; // e.g. "2025-03"
+          monthBars[key] = (monthBars[key] || 0) + 1;
         });
-
-      const sortedMonths = Object.keys(monthBars).sort((monthA, monthB) => {
-        return new Date(monthA).getTime() - new Date(monthB).getTime();
+  
+      const sortedKeys = Object.keys(monthBars).sort();
+  
+      const displayMonths = sortedKeys.map(key => {
+        const [year, month] = key.split('-');
+        const date = new Date(Number(year), Number(month) - 1);
+        return date.toLocaleString('default', { month: 'short', year: 'numeric' });
       });
-
-      const gamesCount = sortedMonths.map(month => monthBars[month]);
-
-      this.renderMatchesChart(sortedMonths, gamesCount);
+  
+      const gamesCount = sortedKeys.map(key => monthBars[key]);
+      this.renderMatchesChart(displayMonths, gamesCount);
     });
   }
 
