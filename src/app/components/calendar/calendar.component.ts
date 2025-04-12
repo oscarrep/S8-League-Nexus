@@ -124,7 +124,10 @@ export class CalendarComponent implements OnInit, AfterViewInit {
 
   getCalendarEvents() {
     this._gameService.getGameList().subscribe((data: Game[]) => {
-      this.calendarEvents = data;
+      this.calendarEvents = data.map(event => ({
+        ...event,
+        color: this.getLeagueColor(event.league)
+      }));
     })
   }
 
@@ -169,5 +172,19 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   }
 
   toggleEditMode() { this.editMode.update(value => !value); }
+
+  getLeagueColor(league: string): string {
+    switch (league) {
+      case 'LEC': return '#19E4F9';
+      case 'LCK': return '#1C192A';
+      case 'LPL': return '#F40A0A';
+      case 'LCP': return '#F68A4A';
+      case 'LTAN': return '#317DEA';
+      case 'LTAS': return '#D55A30';
+      case 'WORLDS': return '#191919';
+      case 'MSI': return '#FD0105';
+      default: return '#888888';
+    }
+  }
 
 }
