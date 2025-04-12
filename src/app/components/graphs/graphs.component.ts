@@ -68,11 +68,21 @@ export class GraphsComponent implements OnInit {
     this._gameService.getGameList().subscribe(games => {
       const monthBars: { [key: string]: number } = {};
 
-      games.forEach(game => {
-        const date = new Date(game.start);
-        const month = date.toLocaleString('default', { month: 'short', year: 'numeric' });
-        monthBars[month] = (monthBars[month] || 0) + 1;
-      });
+      games
+        .filter(game => {
+          const start = new Date(game.start);
+          const end = new Date(game.end!);
+          return (
+            start.getFullYear() === end.getFullYear() &&
+            start.getMonth() === end.getMonth() &&
+            start.getDate() === end.getDate()
+          );
+        })
+        .forEach(game => {
+          const date = new Date(game.start);
+          const month = date.toLocaleString('default', { month: 'short', year: 'numeric' });
+          monthBars[month] = (monthBars[month] || 0) + 1;
+        });
 
       const sortedMonths = Object.keys(monthBars).sort((monthA, monthB) => {
         return new Date(monthA).getTime() - new Date(monthB).getTime();
