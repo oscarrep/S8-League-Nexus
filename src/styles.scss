@@ -1,1 +1,39 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-color: #050505;
+}
+
+.button-add {
+    margin-left: auto;
+    background-color: #00e4bf;
+    border: none;
+    font-size: 24px;
+    font-weight: bolder;
+    border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 1;
+    padding: 0;
+
+    &:hover {
+        background-color: #00c4a7;
+        cursor: pointer;
+    }
+
+}
+
+.flex-center,
+.block-center,
+.button-add {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-center,
+.button-add {
+    display: flex;
+}
+
+.block-center {
+    display: block;
+}

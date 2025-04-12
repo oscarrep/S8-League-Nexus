@@ -1,4 +1,12 @@
-#map {
-    height: 100vh; 
-    width: 100vh;
-  }
+.map{
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 7%;
+}
+
+.title{
+  color:#FFFFDE;
+}

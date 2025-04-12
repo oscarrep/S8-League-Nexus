@@ -25,7 +25,7 @@ export class PlayerService {
     return this.http.get<Player[]>(`${this.appUrl}${this.apiUrl}`);
   }
 
-  deletePlayer(id: number): Observable<void> {
+  deletePlayer(id: number | undefined): Observable<void> {
     return this.http.delete<void>(`${this.appUrl}${this.apiUrl}${id}`)
   }
 
@@ -37,11 +37,11 @@ export class PlayerService {
     return this.http.get<Player>(`${this.appUrl}${this.apiUrl}${id}`)
   }
 
-  updatePlayer(id: number, player: Player): Observable<void> {
+  updatePlayer(id: number | undefined, player: Player): Observable<void> {
     return this.http.put<void>(`${this.appUrl}${this.apiUrl}${id}`, player)
   }
 
-  getPlayerCoords(city:string, country:string):Observable<GeoResponse> {
+  getPlayerCoords(city: string, country: string): Observable<GeoResponse> {
     return this.http.get<GeoResponse>(`${this.geoApiUrl}q=${city},${country}&key=${this.geoApiKey}`);
   }
 }
