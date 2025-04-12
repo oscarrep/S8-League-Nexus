@@ -3,7 +3,7 @@
         <div class="calendar-container">
             <button type="button" (click)="openAddModal()" class="button-add mb-3">+</button>
             <div class="full-calendar">
-                <full-calendar [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
+                <full-calendar #calendarRef [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
             </div>
         </div>
     </div>

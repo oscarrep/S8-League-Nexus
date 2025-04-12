@@ -1,7 +1,7 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { AfterViewInit, Component, inject, OnInit, signal, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router, ActivatedRoute } from '@angular/router';
-import { FullCalendarModule } from '@fullcalendar/angular';
+import { FullCalendarComponent, FullCalendarModule } from '@fullcalendar/angular';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
@@ -19,9 +19,10 @@ import { EventClickArg } from '@fullcalendar/core/index.js';
   templateUrl: './calendar.component.html',
   styleUrl: './calendar.component.scss'
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, AfterViewInit {
   calendarOptions: any;
   calendarEvents!: any[];
+  @ViewChild('calendarRef', { static: false }) calendarRef!: FullCalendarComponent;
 
   showEventModal = signal(false);
   showAddEventModal = signal(false);
@@ -49,7 +50,17 @@ export class CalendarComponent implements OnInit {
   constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.setCalendarOptions();
+    this.getCalendarEvents();
+    this.setAddEditMode();
+  }
 
+  ngAfterViewInit() {
+    this.responsiveButtonText();
+    window.addEventListener('resize', this.responsiveButtonText.bind(this));
+  }
+
+  setCalendarOptions() {
     this.calendarOptions = {
       plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin, bootstrap5Plugin],
       headerToolbar: {
@@ -73,9 +84,9 @@ export class CalendarComponent implements OnInit {
       eventClick: this.openModal.bind(this),
       dateClick: this.openAddModal.bind(this),
     }
+  }
 
-    this.getCalendarEvents();
-
+  setAddEditMode() {
     this.route.paramMap.subscribe(params => {
       const id = params.get('id');
       if (id === 'add') {
@@ -87,10 +98,10 @@ export class CalendarComponent implements OnInit {
           end: '',
           league: ''
         });
-
         this.editMode.set(true);
         this.showEventModal.set(true);
-      } else if (id) {
+      }
+      else if (id) {
         this._gameService.getGame(Number(id)).subscribe(game => {
           this.selectedEvent.set(game);
           this.editMode.set(false);
@@ -98,19 +109,17 @@ export class CalendarComponent implements OnInit {
         });
       }
     });
-
   }
 
   responsiveButtonText() {
-    const isMobile = window.innerWidth < 768;
-  
-    const buttonText = isMobile
-      ? { today: 'Now', month: 'M', week: 'W', day: 'D' }
-      : { today: 'Today', month: 'Month', week: 'Week', day: 'Day' };
-  
-    if (this.calendarOptions) {
-      this.calendarOptions.buttonText = buttonText;
-    }
+    const buttonText = window.innerWidth < 768
+      ? { prev: '<', next: '>', today: 'Now', month: 'M', week: 'W', day: 'D' }
+      : { prev: '<', next: '>', today: 'Today', month: 'Month', week: 'Week', day: 'Day' };
+
+    if (this.calendarOptions) this.calendarOptions.buttonText = buttonText;
+
+    if (this.calendarRef) this.calendarRef.getApi().setOption('buttonText', buttonText);
+
   }
 
   getCalendarEvents() {
