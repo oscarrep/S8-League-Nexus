@@ -15,10 +15,6 @@ body {
     line-height: 1;
     padding: 0;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
     &:hover {
         background-color: #00c4a7;
         cursor: pointer;
@@ -26,14 +22,18 @@ body {
 
 }
 
-.flex-center {
+.flex-center,
+.block-center,
+.button-add {
     justify-content: center;
     align-items: center;
+}
+
+.flex-center,
+.button-add {
     display: flex;
 }
 
 .block-center {
-    justify-content: center;
-    align-items: center;
     display: block;
 }
