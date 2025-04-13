@@ -8,3 +8,40 @@
   padding: 10px;
   border-radius: 10px;
 }
+
+@media (min-width: 426px) {
+  .hide-non-mobile {
+    display: none;
+  }
+}
+
+@media (min-width: 426px) and (max-width: 768px) {
+  h2 {
+    font-size: 22px;
+  }
+}
+@media (min-width: 769px) and (max-width: 1023px) {
+  h2 {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 300px) and (max-width: 425px) {
+  h2 {
+    font-size: 15px;
+  }
+
+  .hide-mobile {
+    display: none;
+  }
+}
+@media (min-width: 300px) and (max-width: 375px) {
+  h2 {
+    font-size: 13px;
+  }
+}
+@media (max-width: 320px) {
+  h2 {
+    font-size: 10px;
+  }
+}

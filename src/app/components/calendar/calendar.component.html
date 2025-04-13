@@ -1,14 +1,19 @@
 <div class="container">
     <div class="row flex-center">
-        <div class="calendar-container">
-            <button type="button" (click)="openAddModal()" class="button-add mb-3">+</button>
-            <div class="full-calendar">
-                <full-calendar #calendarRef [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
+        <div class="flex-center">
+            <div class="calendar-container">
+                <div class="d-flex">
+                    <h2 class="text-white flex-center ms-auto">CREATE MATCHES AND TOURNAMENT <span class="hide-non-mobile">S</span><span class="hide-mobile ms-2">SEASONS</span></h2>
+                    <button type="button" (click)="openAddModal()" class="button-add my-3">+</button>
+                </div>
+                <div class="full-calendar">
+                    <full-calendar #calendarRef [options]="calendarOptions" [events]="calendarEvents"></full-calendar>
+                </div>
             </div>
         </div>
     </div>
 </div>
 
 @if (showEventModal()) {
-<app-modal [eventSig]="selectedEvent" [onClose]="closeModal" [setEditMode]="editMode.set" [editMode]="editMode"/>
+<app-modal [eventSig]="selectedEvent" [onClose]="closeModal" [setEditMode]="editMode.set" [editMode]="editMode" />
 }
