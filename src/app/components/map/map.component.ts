@@ -36,8 +36,8 @@ export class MapComponent implements OnInit {
   }
 
   setPlayerMarker(player: Player) {
-    if (!player.lat || !player.lon) {
-      console.error(`No coords for ${player.username}`);
+    if (typeof player.lat !== 'number' || typeof player.lon !== 'number' || isNaN(player.lat) || isNaN(player.lon)) {
+      console.error(`Invalid coordinates for ${player.username}`);
       return;
     }
 
@@ -55,14 +55,15 @@ export class MapComponent implements OnInit {
       const city = player.city ? player.city : player.country;
 
       this._playerService.getPlayerCoords(city, player.country).subscribe((response: GeoResponse) => {
-        player.lat = response.results[0].geometry.lat
-        player.lon = response.results[0].geometry.lng
-      
-      this.setPlayerMarker(player);
-      
+        if (response.results.length > 0) {
+          player.lat = response.results[0].geometry.lat;
+          player.lon = response.results[0].geometry.lng;
+
+          this.setPlayerMarker(player);
+        }
+        else console.error(`No valid coordinates found for ${player.username}`);
+
       });
     });
-
   }
-
 }
