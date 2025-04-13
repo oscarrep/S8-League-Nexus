@@ -31,6 +31,8 @@ export class MapComponent implements OnInit {
   }
 
   private initMap() {
+    if (this.map) this.map.remove();
+    
     this.map = leaflet.map('map').setView([43.33, 2.15], 4.5);
     leaflet.tileLayer(environment.mapUrl).addTo(this.map);
   }
