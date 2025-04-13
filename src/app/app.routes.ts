@@ -1,17 +1,25 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './components/home/home.component';
 import { MapComponent } from './components/map/map.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { GraphsComponent } from './components/graphs/graphs.component';
-import { AddEditComponent } from './components/add-edit/add-edit.component';
+import { PlayerListComponent } from './components/player-list/player-list.component';
 
 export const routes: Routes = [
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: 'home', component: HomeComponent },
-    { path: 'add', component: AddEditComponent },
-    { path: 'edit/:id', component: AddEditComponent },
-    { path: 'map', component: MapComponent },
-    { path: 'calendar', component: CalendarComponent },
-    { path: 'graphs', component: GraphsComponent },
-    { path: '**', redirectTo: 'home' }
+  { path: '', redirectTo: 'players', pathMatch: 'full' },
+  {
+    path: 'players', children: [
+      { path: '', component: PlayerListComponent },
+      { path: ':id', component: PlayerListComponent },
+    ]
+  },
+  { path: 'map', component: MapComponent },
+  {
+    path: 'calendar',
+    children: [
+      { path: '', component: CalendarComponent },
+      { path: ':id', component: CalendarComponent },
+    ]
+  },
+  { path: 'graphs', component: GraphsComponent },
+  { path: '**', redirectTo: 'players' }
 ];
