@@ -2,6 +2,8 @@
 
 League Nexus is a web application that allows users to manage League of Legends players, track their locations on a map, and schedule events such as matches and tournament seasons on an interactive calendar. The application also provides data visualization features with player age and matches per month graphs.
 
+![Map View](./src/assets/image.png)
+
 ## Project Overview
 
 League Nexus enables users to:
