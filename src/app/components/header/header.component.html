@@ -8,10 +8,10 @@
         <div class="hamburger d-md-none" (click)="toggleMenu()"> ☰ </div>
 
         <nav [ngClass]="{ 'nav-links': true, 'open': menu }">
-            <a routerLink="/players">PLAYERS</a>
-            <a routerLink="/map">MAP</a>
-            <a routerLink="/calendar">CALENDAR</a>
-            <a routerLink="/graphs">GRAPHS</a>
+            <a routerLink="/players" routerLinkActive="active">PLAYERS</a>
+            <a routerLink="/map" routerLinkActive="active">MAP</a>
+            <a routerLink="/calendar" routerLinkActive="active">CALENDAR</a>
+            <a routerLink="/graphs" routerLinkActive="active">GRAPHS</a>
         </nav>
     </div>
 </header>

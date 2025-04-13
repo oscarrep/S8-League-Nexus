@@ -1,59 +1,85 @@
-# S8Inprocode
+# S8 - League Nexus
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.7.
+League Nexus is a web application that allows users to manage League of Legends players, track their locations on a map, and schedule events such as matches and tournament seasons on an interactive calendar. The application also provides data visualization features with player age and matches per month graphs.
 
-## Development server
+![Map View](./src/assets/image.png)
 
-To start a local development server, run:
+## Project Overview
 
-```bash
-ng serve
-```
+League Nexus enables users to:
+- Create, read, update, and delete player data
+- View player locations on an interactive map
+- Add and manage events like matches or tournament seasons using a calendar
+- Visualize player demographics and match frequency through graphs
+- Access all data through a custom API built for this project
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Functionalities
 
-## Code scaffolding
+- **API Communication**: Custom backend for data storage and retrieval
+- **Player CRUD Operations**: Complete player management system
+- **Event CRUD Operations**: Create and manage various LoL events
+- **Interactive Calendar**: Schedule and view events with FullCalendar
+- **Interactive Map**: Visual representation of player locations using Leaflet
+- **Data Visualization**: Charts displaying player age distribution and match frequency
+- **Header Navigation**: Intuitive navigation throughout the application
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Technologies
 
-```bash
-ng generate component component-name
-```
+- Angular 19
+- Bootstrap 5
+- FullCalendar
+- Chart.js
+- Leaflet
+- Geolocation API
+- Jest (Testing)
+- Custom API
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Requirements
 
-```bash
-ng generate --help
-```
+- Node.js
+- Visual Studio Code or similar IDE
 
-## Building
+---
 
-To build the project run:
+## Installation Instructions
 
-```bash
-ng build
-```
+1. Clone the repository:
+   ```
+   git clone https://github.com/oscarrep/S8-League-Nexus
+   cd S8-League-Nexus
+   ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+2. Install dependencies:
+   ```
+   npm i
+   ```
 
-## Running unit tests
+3. Install specific packages:
+   ```
+   npm i ngx-toastr
+   npm i jest @types/jest
+   npm i @fullcalendar/angular @fullcalendar/core
+   npm i leaflet @types/leaflet
+   npm i chart.js
+   ```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+4. Start the development server:
+   ```
+   ng serve -o
+   ```
 
-```bash
-ng test
-```
+5. Navigate to `http://localhost:4200/` in your browser to view the application.
 
-## Running end-to-end tests
+---
 
-For end-to-end (e2e) testing, run:
+## Usage
 
-```bash
-ng e2e
-```
+- **Player Management**: Navigate to the Players section to add, edit, or remove player profiles
+- **Map View**: Explore the geographical distribution of players on the interactive map
+- **Calendar**: Schedule and track events such as tournaments or practice matches
+- **Analytics**: View statistical data about player demographics and match frequency
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
 
-## Additional Resources
+## License
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+This project is licensed under the MIT License - see the LICENSE file for details.
