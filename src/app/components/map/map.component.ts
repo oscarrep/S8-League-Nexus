@@ -17,6 +17,7 @@ export class MapComponent implements OnInit {
   private map: any;
   private userMarker: leaflet.Marker<any> | undefined;
   playerList: Player[] = [];
+  private layerGroups: { [key: string]: leaflet.LayerGroup } = {};
 
 
   constructor(private _playerService: PlayerService) { }
@@ -27,12 +28,13 @@ export class MapComponent implements OnInit {
       this.playerList = data;
       this.getCoords(this.playerList);
       this.initMap();
+      this.initLayerGroups();
     });
   }
 
   private initMap() {
     if (this.map) this.map.remove();
-    
+
     this.map = leaflet.map('map').setView([43.33, 2.15], 4.5);
     leaflet.tileLayer(environment.mapUrl).addTo(this.map);
   }
@@ -48,8 +50,15 @@ export class MapComponent implements OnInit {
     if (navigator.geolocation) {
       const coords: [number, number] = [player.lat, player.lon];
       const marker = leaflet.marker(coords, { icon: icon, draggable: false }).addTo(this.map);
-      marker.bindPopup(`<b>${player.username}</b><br>${player.city || player.country}`);
+      marker.bindPopup(`<b>${player.username}</b><br> ${player.position}<br>${player.city || player.country}`);
+      
+      if(player.position == 'Top Lane') marker.addTo(this.layerGroups['top']);
+      else if(player.position == 'Jungle') marker.addTo(this.layerGroups['jun']);
+      else if(player.position == 'Mid Lane') marker.addTo(this.layerGroups['mid']);
+      else if(player.position == 'Bot Lane') marker.addTo(this.layerGroups['adc']);
+      else if(player.position == 'Support') marker.addTo(this.layerGroups['sup']);
     }
+
   }
 
   getCoords(players: Player[]) {
@@ -67,5 +76,28 @@ export class MapComponent implements OnInit {
 
       });
     });
+  }
+
+  initLayerGroups() {
+    this.layerGroups = {
+      top: leaflet.layerGroup().addTo(this.map),
+      jun: leaflet.layerGroup().addTo(this.map),
+      mid: leaflet.layerGroup().addTo(this.map),
+      adc: leaflet.layerGroup().addTo(this.map),
+      sup: leaflet.layerGroup().addTo(this.map),
+    };
+    leaflet.control
+      .layers(
+        undefined,
+        {
+          'Top Lane': this.layerGroups['top'],
+          'Jungle': this.layerGroups['jun'],
+          'Mid Lane': this.layerGroups['mid'],
+          'Bot Lane': this.layerGroups['adc'],
+          'Support': this.layerGroups['sup'],
+        },
+        { collapsed: false }
+      )
+      .addTo(this.map);
   }
 }
