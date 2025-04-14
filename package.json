@@ -11,7 +11,7 @@
     "test": "ng test",
     "prebuild": "node scripts/create-environment.js",
     "build": "ng build --configuration production",
-    "vercel-build": "npm run build"
+    "vercel-build": "npm run prebuild && ng build --configuration production"
   },
   "private": true,
   "dependencies": {
