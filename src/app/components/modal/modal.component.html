@@ -13,11 +13,11 @@
 
             <div>
                 <b>Game start</b><br />
-                {{ eventSig()?.start_date | date: 'MMMM d HH:mm' }}
+                {{ eventSig()?.start | date: 'MMMM d HH:mm' }}
             </div>
             <div>
                 <b>Game end</b><br />
-                {{ eventSig()?.end_date ? (eventSig()?.end_date | date: 'MMMM d HH:mm') : '—' }}
+                {{ eventSig()?.end ? (eventSig()?.end | date: 'MMMM d HH:mm') : '—' }}
             </div>
 
             <button type="button" class="mt-3 btn btn-warning" (click)="toggleEditMode()">✏</button>

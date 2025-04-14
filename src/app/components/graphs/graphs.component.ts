@@ -70,8 +70,8 @@ export class GraphsComponent implements OnInit {
 
       games
         .filter(game => {
-          const start = new Date(game.start_date);
-          const end = new Date(game.end_date!);
+          const start = new Date(game.start);
+          const end = new Date(game.end!);
           return (
             start.getFullYear() === end.getFullYear() &&
             start.getMonth() === end.getMonth() &&
@@ -79,7 +79,7 @@ export class GraphsComponent implements OnInit {
           );
         })
         .forEach(game => {
-          const date = new Date(game.start_date);
+          const date = new Date(game.start);
           const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`; // e.g. "2025-03"
           monthBars[key] = (monthBars[key] || 0) + 1;
         });
