@@ -41,8 +41,8 @@ export class ModalComponent {
       this.form.patchValue({
         title: game.title,
         description: game.description || '',
-        start: this._gameService.toDatetimeLocal(game.start),
-        end: game.end ? this._gameService.toDatetimeLocal(game.end) : '',
+        start: this._gameService.toDatetimeLocal(game.start_date),
+        end: game.end_date ? this._gameService.toDatetimeLocal(game.end_date) : '',
         league: game.league || '',
       });
     }
@@ -74,8 +74,8 @@ export class ModalComponent {
     this.form = this.fb.group({
       title: ['', Validators.required],
       description: [''],
-      start: ['', Validators.required],
-      end: [''],
+      start_date: ['', Validators.required],
+      end_date: [''],
       league: [''],
     });
   }

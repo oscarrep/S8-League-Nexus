@@ -94,8 +94,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           id: 0,
           title: '',
           description: '',
-          start: '',
-          end: '',
+          start_date: '',
+          end_date: '',
           league: ''
         });
         this.editMode.set(true);
@@ -125,9 +125,14 @@ export class CalendarComponent implements OnInit, AfterViewInit {
   getCalendarEvents() {
     this._gameService.getGameList().subscribe((data: Game[]) => {
       this.calendarEvents = data.map(event => ({
-        ...event,
-        color: this.getLeagueColor(event.league)
+        title: event.title,
+        start: event.start_date,
+        end: event.end_date,
+        color: this.getLeagueColor(event.league),
+        description: event.description,
+        league: event.league
       }));
+      console.log(this.calendarEvents);
     })
   }
 
@@ -140,8 +145,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       id: parseInt(event.id),
       title: event.title,
       description: event.extendedProps['description'],
-      start: event.startStr,
-      end: event.endStr,
+      start_date: event.startStr,
+      end_date: event.endStr,
       league: event.extendedProps['league'],
     });
     this.editMode.set(false);
@@ -154,8 +159,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.selectedEvent.set({
       title: '',
       description: '',
-      start: '',
-      end: '',
+      start_date: '',
+      end_date: '',
       league: ''
     });
 
