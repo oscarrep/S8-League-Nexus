@@ -7,10 +7,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prebuild":"ts-node scripts/create-environment.ts",
+    "prebuild": "node scripts/create-environment.js",
+    "build": "ng build --configuration production",
     "vercel-build": "npm run build"
   },
   "private": true,
