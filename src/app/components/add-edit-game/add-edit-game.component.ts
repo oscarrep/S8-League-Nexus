@@ -48,9 +48,6 @@ export class AddEditGameComponent implements OnInit {
       league: this.gameForm.value.league,
     }
 
-    console.log(game)
-
-
     if (this.gameSig && this.gameSig()?.id) {
       game.id = this.gameSig()!.id;
       this._gameService.updateGame(game.id, game).subscribe(() => {

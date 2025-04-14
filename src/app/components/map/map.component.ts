@@ -24,7 +24,6 @@ export class MapComponent implements OnInit {
 
   ngOnInit(): void {
     this._playerService.getPlayerList().subscribe((data: Player[]) => {
-      console.log(data);
       this.playerList = data;
       this.getCoords(this.playerList);
       this.initMap();

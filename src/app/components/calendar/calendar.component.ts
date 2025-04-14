@@ -132,7 +132,6 @@ export class CalendarComponent implements OnInit, AfterViewInit {
         description: event.description,
         league: event.league
       }));
-      console.log(this.calendarEvents);
     })
   }
 
