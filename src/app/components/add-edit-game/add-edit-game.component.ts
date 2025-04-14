@@ -43,8 +43,8 @@ export class AddEditGameComponent implements OnInit {
     const game: Game = {
       title: this.gameForm.value.title,
       description: this.gameForm.value.description,
-      start: this.gameForm.value.start,
-      end: this.gameForm.value.end,
+      start_date: this.gameForm.value.start_date,
+      end_date: this.gameForm.value.end_date,
       league: this.gameForm.value.league,
     }
 
@@ -69,8 +69,8 @@ export class AddEditGameComponent implements OnInit {
     this.gameForm.patchValue({
       title: game.title,
       description: game.description || '',
-      start: this._gameService.toDatetimeLocal(game.start),
-      end: game.end ? this._gameService.toDatetimeLocal(game.end) : '',
+      start_date: this._gameService.toDatetimeLocal(game.start_date),
+      end_date: game.end_date ? this._gameService.toDatetimeLocal(game.end_date) : '',
       league: game.league || '',
     });
   }

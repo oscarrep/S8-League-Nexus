@@ -94,8 +94,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
           id: 0,
           title: '',
           description: '',
-          start: '',
-          end: '',
+          start_date: '',
+          end_date: '',
           league: ''
         });
         this.editMode.set(true);
@@ -140,8 +140,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
       id: parseInt(event.id),
       title: event.title,
       description: event.extendedProps['description'],
-      start: event.startStr,
-      end: event.endStr,
+      start_date: event.startStr,
+      end_date: event.endStr,
       league: event.extendedProps['league'],
     });
     this.editMode.set(false);
@@ -154,8 +154,8 @@ export class CalendarComponent implements OnInit, AfterViewInit {
     this.selectedEvent.set({
       title: '',
       description: '',
-      start: '',
-      end: '',
+      start_date: '',
+      end_date: '',
       league: ''
     });
 
