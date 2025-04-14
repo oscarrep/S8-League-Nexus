@@ -21,4 +21,5 @@ export const environment = {
     esportsUrl:'',
     esportsEn:'',
     esportsEsp:'',
+    
 }
