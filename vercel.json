@@ -6,10 +6,17 @@
         "use": "@vercel/angular"
       }
     ],
+    "outputDirectory": "dist/s8-Inprocode",
     "routes": [
       {
         "src": "/(.*)",
         "dest": "/index.html"
       }
-    ]
+    ],
+    "rewrites": [
+        {
+          "source": "/(.*)",
+          "destination": "/index.html"
+        }
+      ]
   }
