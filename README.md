@@ -57,8 +57,8 @@ League Nexus enables users to:
 
 3. Install specific packages:
    ```
-   npm i ngx-toastr
    npm i @angular/animations
+   npm i ngx-toastr
    npm i jest @types/jest
    npm i @fullcalendar/angular @fullcalendar/core
    npm i leaflet @types/leaflet
