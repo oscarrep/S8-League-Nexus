@@ -10,7 +10,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "vercel-build": "node scripts/create-environment.js && ng build --configuration=production"
+    "prebuild":"ts-node scripts/create-environment.ts",
+    "vercel-build": "npm run build"
   },
   "private": true,
   "dependencies": {
