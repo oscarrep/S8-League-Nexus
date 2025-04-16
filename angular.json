@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/",
+            "outputPath": "dist/S8-Inprocode",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -63,7 +63,7 @@
                 }
               ],
               "outputHashing": "all",
-              "outputPath": "dist/"
+              "outputPath": "dist/S8-Inprocode"
             },
             "development": {
               "optimization": false,
