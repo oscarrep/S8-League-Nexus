@@ -11,6 +11,12 @@
     ],
     "routes": [
       {
+        "src": "/(.*\\.js|.*\\.css|.*\\.woff2?|.*\\.ttf|.*\\.svg|.*\\.ico|.*\\.png|.*\\.jpg|.*\\.webp|.*\\.map)",
+        "headers": {
+          "cache-control": "public, max-age=31536000, immutable"
+        }
+      },
+      {
         "src": "/(.*)",
         "dest": "/index.html"
       }
