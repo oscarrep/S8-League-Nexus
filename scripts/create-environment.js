@@ -3,7 +3,7 @@ import fs from 'fs';
 const envConfig = `
 export const environment = {
   production: true,
-  host: '${process.env['MYSQLHOST']}',
+  host: '${process.env['host']}',
   apiPlayers:'${process.env['apiPlayers']}',
   
   geoApi:'${process.env['geoApi']}',
