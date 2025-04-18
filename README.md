@@ -39,6 +39,7 @@ League Nexus enables users to:
 
 - Node.js
 - Visual Studio Code or similar IDE
+- Angular 19
 
 ---
 
@@ -71,6 +72,7 @@ League Nexus enables users to:
    ```
 
 5. Navigate to `http://localhost:4200/` in your browser to view the application.
+6. Or go to `https://s8-league-nexus.vercel.app` for the deployed build.
 
 ---
 
