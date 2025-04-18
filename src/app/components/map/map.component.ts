@@ -34,8 +34,11 @@ export class MapComponent implements OnInit {
   private initMap() {
     if (this.map) this.map.remove();
 
-    this.map = leaflet.map('map').setView([43.33, 2.15], 4.5);
-    leaflet.tileLayer(environment.mapUrl).addTo(this.map);
+    this.map = leaflet.map('map').setView([43.33, 2.15], 3);
+    leaflet.tileLayer(environment.mapUrl, {
+      maxZoom: 8,
+      attribution: 'NASA Earthdata'
+    }).addTo(this.map);
   }
 
   setPlayerMarker(player: Player) {
@@ -50,12 +53,12 @@ export class MapComponent implements OnInit {
       const coords: [number, number] = [player.lat, player.lon];
       const marker = leaflet.marker(coords, { icon: icon, draggable: false }).addTo(this.map);
       marker.bindPopup(`<b>${player.username}</b><br> ${player.position}<br>${player.city || player.country}`);
-      
-      if(player.position == 'Top Lane') marker.addTo(this.layerGroups['top']);
-      else if(player.position == 'Jungle') marker.addTo(this.layerGroups['jun']);
-      else if(player.position == 'Mid Lane') marker.addTo(this.layerGroups['mid']);
-      else if(player.position == 'Bot Lane') marker.addTo(this.layerGroups['adc']);
-      else if(player.position == 'Support') marker.addTo(this.layerGroups['sup']);
+
+      if (player.position == 'Top Lane') marker.addTo(this.layerGroups['top']);
+      else if (player.position == 'Jungle') marker.addTo(this.layerGroups['jun']);
+      else if (player.position == 'Mid Lane') marker.addTo(this.layerGroups['mid']);
+      else if (player.position == 'Bot Lane') marker.addTo(this.layerGroups['adc']);
+      else if (player.position == 'Support') marker.addTo(this.layerGroups['sup']);
     }
 
   }
